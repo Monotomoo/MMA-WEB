@@ -1,0 +1,2910 @@
+<!DOCTYPE html>
+<html lang="hr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hrvatski MMA Savez | CROMMA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cro-red: #C8102E;
+            --cro-blue: #00205B;
+            --bg-dark: #0A0A0A;
+            --bg-slate: #121212;
+            --text-main: #FFFFFF;
+            --text-muted: #A0A0A0;
+            --glass-bg: rgba(18, 18, 18, 0.7);
+        }
+
+        .light-mode {
+            --bg-dark: #F5F5F7;
+            --bg-slate: #FFFFFF;
+            --text-main: #0A0A0A;
+            --text-muted: #404040;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+        }
+
+        .light-mode .savez-card {
+            background: #ffffff !important;
+            border-color: rgba(0,0,0,0.1) !important;
+        }
+
+        .light-mode .savez-card-title {
+            color: #0A0A0A !important;
+        }
+
+        .light-mode .savez-card-body {
+            color: rgba(0,0,0,0.5) !important;
+        }
+
+        /* Sponsor logos — full color, no boxes */
+        .sponsor-logo {
+            opacity: 1;
+            filter: none;
+            transition: transform 0.3s ease;
+        }
+
+        .sponsor-logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Light mode: sponsor section */
+        .light-mode .sponsor-section {
+            background: #f0f0f0 !important;
+        }
+
+        .light-mode .sponsor-section > div > div > div h2 {
+            color: #0A0A0A !important;
+        }
+
+        .light-mode .sponsor-section .text-white\/50,
+        .light-mode .sponsor-section .text-white\/40 {
+            color: rgba(0,0,0,0.5) !important;
+        }
+
+        .light-mode .sponsor-section .border-l-2.border-\[--cro-red\] ~ p,
+        .light-mode .sponsor-section .text-white.font-black.text-4xl {
+            color: #0A0A0A !important;
+        }
+
+        /* Stats numbers in light mode */
+        .light-mode .sponsor-section .text-white.font-black {
+            color: #0A0A0A !important;
+        }
+
+        .light-mode .sponsor-section .text-white\/30 {
+            color: rgba(0,0,0,0.35) !important;
+        }
+
+        .light-mode #galerija {
+            background-color: #F5F5F7;
+        }
+
+        .light-mode #galerija .impact-text {
+            color: rgba(0, 0, 0, 0.05);
+        }
+
+        .light-mode #vijesti {
+            background-color: #FFFFFF;
+        }
+
+        .light-mode #vijesti article {
+            background: rgba(0, 0, 0, 0.04) !important;
+            border-color: rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .light-mode #vijesti article h3 {
+            color: #0A0A0A;
+        }
+
+        .light-mode #vijesti .bento-card {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        /* Istaknuto bento — force dark cards in light mode */
+        .light-mode #istaknuto .bento-card {
+            background: #111111 !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            color: white;
+            --text-main: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.55);
+            --cro-blue: rgba(255, 255, 255, 0.7);
+        }
+
+        .light-mode #istaknuto .bento-card *,
+        .light-mode #istaknuto .bento-card h3,
+        .light-mode #istaknuto .bento-card p,
+        .light-mode #istaknuto .bento-card span,
+        .light-mode #istaknuto .bento-card a {
+            color: white !important;
+        }
+
+        .light-mode #istaknuto .bento-card .bg-\[--cro-red\] {
+            color: white !important;
+        }
+
+        /* Sve vijesti button in light mode */
+        .light-mode #istaknuto a.btn-premium {
+            border-color: rgba(0,0,0,0.2) !important;
+            color: #0A0A0A !important;
+            background: transparent !important;
+        }
+
+        .light-mode #istaknuto a.btn-premium:hover {
+            color: var(--cro-red) !important;
+        }
+
+        /* UFC-Style Navbar */
+        #navbar {
+            background-color: rgba(255, 255, 255, 0.99);
+            border-bottom: 2px solid var(--cro-red);
+            box-shadow: 0 4px 32px rgba(200, 16, 46, 0.18), 0 1px 0 rgba(200, 16, 46, 0.4);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        #navbar.glass {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            -webkit-backdrop-filter: blur(28px);
+            backdrop-filter: blur(28px);
+            border-bottom: 2px solid var(--cro-red) !important;
+            box-shadow: 0 4px 32px rgba(200, 16, 46, 0.18) !important;
+        }
+
+        /* Vertical divider in navbar */
+        .nav-divider {
+            width: 1px;
+            height: 28px;
+            background: rgba(0, 0, 0, 0.12);
+            flex-shrink: 0;
+        }
+        .light-mode .nav-divider {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        #navbar a {
+            color: #0A0A0A;
+            transition: color 0.25s ease;
+        }
+
+        #navbar a:hover {
+            color: var(--cro-red);
+        }
+
+        /* Desktop nav link underline sweep */
+        .nav-desktop-link {
+            position: relative;
+            padding-bottom: 3px;
+        }
+        .nav-desktop-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--cro-red);
+            transform: scaleX(0);
+            transform-origin: left center;
+            transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .nav-desktop-link:hover::after { transform: scaleX(1); }
+
+        #navbar .hidden.md\:flex.items-center span,
+        #navbar #menuToggle {
+            color: #0A0A0A !important;
+        }
+
+        #navbar .btn-premium {
+            border-color: rgba(0, 0, 0, 0.1);
+            color: white !important;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%);
+        }
+
+        /* Dark mode navbar = white bg → Prijavi se: transparent bg, black text */
+        #navbar .btn-secondary {
+            background: transparent !important;
+            border-color: rgba(0, 0, 0, 0.25);
+            color: #0A0A0A !important;
+            font-weight: 800;
+        }
+
+        #navbar .masked-text {
+            -webkit-text-fill-color: transparent !important;
+            background: linear-gradient(90deg, #000 0%, var(--cro-red) 50%, #000 100%) !important;
+            background-size: 200% auto !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+        }
+
+        #navbar .theme-toggle {
+            background: rgba(0, 0, 0, 0.08);
+        }
+
+        /* Mobile Menu — Dark Mode */
+        #mobileMenu {
+            background-color: #FFFFFF;
+        }
+
+        #mobileMenu a {
+            color: #0A0A0A;
+        }
+
+        #mobileMenu #menuClose {
+            color: #0A0A0A;
+        }
+
+        /* Light Mode Navbar — Black bar */
+        .light-mode #navbar {
+            background-color: rgba(8, 8, 8, 0.99) !important;
+            border-bottom: 2px solid var(--cro-red) !important;
+            box-shadow: 0 4px 32px rgba(200, 16, 46, 0.25), 0 1px 0 rgba(200, 16, 46, 0.5) !important;
+        }
+
+        .light-mode #navbar.glass {
+            background-color: rgba(8, 8, 8, 0.95) !important;
+            -webkit-backdrop-filter: blur(28px);
+            backdrop-filter: blur(28px);
+            border-bottom: 2px solid var(--cro-red) !important;
+            box-shadow: 0 4px 32px rgba(200, 16, 46, 0.25) !important;
+        }
+
+        .light-mode #navbar a {
+            color: white;
+        }
+
+        .light-mode #navbar a:hover {
+            color: var(--cro-red);
+        }
+
+        .light-mode #navbar .hidden.md\:flex.items-center span,
+        .light-mode #navbar #menuToggle {
+            color: white !important;
+        }
+
+        /* Light mode navbar = black bg → Prijavi se: transparent bg, white text */
+        .light-mode #navbar .btn-secondary {
+            background: transparent !important;
+            border-color: rgba(255, 255, 255, 0.3);
+            color: white !important;
+            font-weight: 800;
+        }
+
+        .light-mode #navbar .btn-premium {
+            color: white !important;
+        }
+
+        .light-mode #navbar .masked-text {
+            -webkit-text-fill-color: transparent !important;
+            background: linear-gradient(90deg, #fff 0%, var(--cro-red) 50%, #fff 100%) !important;
+            background-size: 200% auto !important;
+            background-clip: text !important;
+            -webkit-background-clip: text !important;
+        }
+
+        .light-mode #navbar .btn-premium {
+            background-color: var(--cro-red) !important;
+            color: white !important;
+            border-color: transparent !important;
+        }
+
+        .light-mode #navbar .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Menu — Light Mode */
+        .light-mode #mobileMenu {
+            background-color: #0A0A0A;
+        }
+
+        .light-mode #mobileMenu a {
+            color: white;
+        }
+
+        .light-mode #mobileMenu #menuClose {
+            color: white;
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #000;
+            color: #fff !important;
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #121212;
+            border-color: var(--cro-red);
+            transform: translateY(-2px);
+        }
+
+        .light-mode .btn-secondary {
+            border-color: rgba(0,0,0,0.2);
+            background: #fff;
+            color: #000 !important;
+        }
+
+        .light-mode .btn-secondary:hover {
+            border-color: var(--cro-red);
+            background: rgba(0,0,0,0.05);
+        }
+
+        .light-mode #navbar #menuToggle,
+        .light-mode #navbar .hidden.md\:flex.items-center span {
+            color: white !important;
+        }
+
+        /* Mobile Menu in Light Mode */
+        .light-mode #mobileMenu {
+            background-color: #0A0A0A;
+        }
+
+        .light-mode #mobileMenu a {
+            color: white;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.6s cubic-bezier(0.23, 1, 0.32, 1), color 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        h1, h2, h3, .impact-text {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        /* Ambient Glow Background */
+        .glow-orb {
+            position: fixed;
+            width: 50vw;
+            height: 50vw;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: -1;
+            transition: transform 1.5s ease-out, background 0.5s ease;
+        }
+
+        .orb-red { background: var(--cro-red); top: -10%; right: -10%; }
+        .orb-blue { background: var(--cro-blue); bottom: -10%; left: -10%; }
+
+        /* Texture Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Cfilter id='noiseFilter'%3%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3%3C/filter%3%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3%3C/svg%3");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        /* Kinetic Masked Headline */
+        .masked-text {
+            background: linear-gradient(90deg, var(--text-main) 0%, var(--cro-red) 50%, var(--text-main) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textFlow 8s linear infinite;
+        }
+
+        @keyframes textFlow {
+            to { background-position: 200% center; }
+        }
+
+        /* Glassmorphism Classes */
+        .glass {
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background 0.5s ease;
+        }
+
+        .light-mode .glass {
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Bento Grid Effects */
+        .bento-card {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            border-color: rgba(200, 16, 46, 0.4);
+            box-shadow: 0 10px 40px -10px rgba(200, 16, 46, 0.2);
+        }
+
+        /* Parallax Background Text */
+        .parallax-text {
+            position: absolute;
+            font-size: 18vw;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(200, 16, 46, 0.15);
+            white-space: nowrap;
+            z-index: -1;
+            pointer-events: none;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            transition: color 0.5s ease, -webkit-text-stroke 0.5s ease;
+        }
+
+        .light-mode .parallax-text {
+            -webkit-text-stroke: 1px rgba(200, 16, 46, 0.1);
+        }
+
+        /* Deep Hero Parallax Layers */
+        .parallax-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            will-change: transform;
+        }
+
+        .hero-word {
+            position: absolute;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--cro-red);
+            opacity: 0.1;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--cro-red);
+            border-radius: 50%;
+            filter: blur(2px);
+            opacity: 0.3;
+        }
+
+        /* Border Trace Effect */
+        .trace-box {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .trace-line {
+            position: absolute;
+            background: var(--cro-red);
+            transition: all 0.5s ease;
+            z-index: 2;
+        }
+
+        /* Top Line */
+        .trace-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cro-red));
+            transition: 0.5s;
+        }
+        .trace-box:hover::before { left: 100%; }
+
+        /* Bottom Line */
+        .trace-box::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: -100%; width: 100%; height: 1px;
+            background: linear-gradient(90deg, var(--cro-red), transparent);
+            transition: 0.5s;
+        }
+        .trace-box:hover::after { right: 100%; }
+
+        /* Modal System */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            width: 90%;
+            max-width: 800px;
+            background: var(--bg-slate);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        /* Club Card */
+        .club-card {
+            background: var(--bg-slate);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .club-card:hover {
+            border-color: var(--cro-red);
+            box-shadow: 0 0 30px rgba(200, 16, 46, 0.1);
+            transform: translateY(-5px);
+        }
+
+        /* Custom Input */
+        .premium-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            width: 100%;
+            color: var(--text-main);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .premium-input:focus {
+            border-color: var(--cro-red);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(200, 16, 46, 0.1);
+        }
+
+        .light-mode .premium-input {
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #000;
+        }
+
+        /* Button Glow & Clean State */
+        .btn-premium:hover {
+            box-shadow: 0 0 30px rgba(200, 16, 46, 0.6);
+            transform: translateY(-2px);
+            border-color: var(--cro-red);
+        }
+
+        /* 3D Kinetic Button Wrapper */
+        .btn-wrap {
+            perspective: 1000px;
+        }
+
+        /* Toggle Switch Styling */
+        .theme-toggle {
+            width: 60px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            align-items: center;
+            padding: 0 4px;
+        }
+
+        .theme-toggle .dot {
+            width: 22px;
+            height: 22px;
+            background: var(--cro-red);
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+            position: absolute;
+            left: 4px;
+            transform: translateX(30px);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), background 0.3s;
+            box-shadow: 0 0 10px rgba(200, 16, 46, 0.5);
+        }
+
+        .light-mode .theme-toggle {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode .theme-toggle .dot {
+            transform: translateX(0) rotate(180deg);
+            background: var(--cro-red);
+        }
+
+        .theme-toggle:active .dot {
+            scale: 0.8;
+        }
+        /* News Ticker */
+        .news-ticker {
+            position: fixed;
+            top: 92px;
+            left: 0;
+            width: 100%;
+            height: 36px;
+            background: #0a0a0a;
+            border-bottom: 1px solid var(--cro-red);
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .news-ticker.hidden-ticker {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
+
+        .light-mode .news-ticker {
+            background: #0a0a0a;
+            border-bottom-color: var(--cro-red);
+        }
+
+        /* LIVE badge */
+        .ticker-live {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 0 18px;
+            height: 100%;
+            background: var(--cro-red);
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 0.25em;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .ticker-live-dot {
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            animation: livePulse 1.4s ease-in-out infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.7); }
+        }
+
+        /* Fade edges */
+        .ticker-fade-right {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            background: linear-gradient(to right, transparent, #0a0a0a);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .ticker-track {
+            display: flex;
+            white-space: nowrap;
+            animation: tickerScroll 35s linear infinite;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0 3rem;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+        }
+
+        .ticker-item span {
+            color: var(--cro-red);
+            font-weight: 900;
+        }
+
+        .ticker-separator {
+            color: rgba(255,255,255,0.2);
+            font-size: 16px;
+        }
+
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-auto-rows: 250px;
+            grid-auto-flow: dense;
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            background: var(--bg-slate);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item.wide { grid-column: span 1; }
+        .gallery-item.tall { grid-row: span 2; }
+
+        @media (min-width: 768px) {
+            .gallery-item.wide { grid-column: span 2; }
+        }
+
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.98);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 1rem;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            transform: scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .lightbox-overlay.active .lightbox-img {
+            transform: scale(1);
+        }
+
+
+        /* Event Portal & Countdown */
+        .event-portal {
+            background: linear-gradient(135deg, rgba(200, 16, 46, 0.08), rgba(0, 32, 91, 0.12));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 3rem;
+            padding: 5rem 5rem;
+            min-height: 480px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-digit {
+            font-size: 4.5rem;
+            font-weight: 900;
+            font-style: italic;
+            line-height: 1;
+            color: #ffffff;
+        }
+
+        .countdown-label {
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--cro-red);
+            margin-top: 0.5rem;
+        }
+
+        /* Partner Scroller */
+        .partner-scroller {
+            display: flex;
+            overflow: hidden;
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .partner-track {
+            display: flex;
+            gap: 6rem;
+            animation: partnerScroll 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .partner-logo {
+            height: 40px;
+            filter: grayscale(1) opacity(0.4);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0) opacity(1);
+            transform: scale(1.1);
+        }
+
+        @keyframes partnerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Scroll Reveal Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Heading split animations */
+        .eyebrow-animate {
+            display: block;
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1) 0.25s;
+        }
+        .reveal.active .eyebrow-animate {
+            clip-path: inset(0 0% 0 0);
+        }
+        .heading-word {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+            margin-right: 0.18em;
+        }
+        .heading-word > span {
+            display: inline-block;
+            transform: translateY(115%);
+            transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active .heading-word:nth-child(1) > span { transform: translateY(0); transition-delay: 0.2s; }
+        .reveal.active .heading-word:nth-child(2) > span { transform: translateY(0); transition-delay: 0.38s; }
+        .reveal.active .heading-word:nth-child(3) > span { transform: translateY(0); transition-delay: 0.56s; }
+
+        /* Heading red hover effect */
+        .section-heading {
+            cursor: default;
+            transition: color 0.8s ease;
+        }
+        .section-heading:hover {
+            color: var(--cro-red);
+        }
+        .section-heading .heading-word > span {
+            transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1), color 0.8s ease;
+        }
+        .section-heading:hover .heading-word > span {
+            color: var(--cro-red);
+        }
+
+        /* 3D Tilt Card */
+        .tilt-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .tilt-inner {
+            transition: transform 0.2s ease-out;
+        }
+
+        /* Klubska Scena heading animation */
+        @keyframes fade-up {
+            0%   { opacity: 0; transform: translateY(28px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .klub-heading {
+            animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+            animation-play-state: paused;
+        }
+        .reveal.active .klub-heading {
+            animation-play-state: running;
+        }
+        .klub-heading {
+            transition: color 0.8s ease;
+            cursor: default;
+        }
+        .klub-heading:hover {
+            color: var(--cro-red);
+        }
+
+        /* MMA Mission Heading Animation */
+        @keyframes mma-label-in {
+            0%   { opacity: 0; transform: translateX(-24px); letter-spacing: 0.05em; }
+            60%  { opacity: 1; transform: translateX(3px); }
+            100% { transform: translateX(0); letter-spacing: 0.3em; }
+        }
+        @keyframes mma-stamp {
+            0%   { opacity: 0; transform: translateY(-70px) scaleY(1.5) skewX(-4deg); }
+            45%  { opacity: 1; transform: translateY(10px) scaleY(0.9) skewX(0deg); }
+            65%  { transform: translateY(-4px) scaleY(1.03); }
+            80%  { transform: translateY(2px) scaleY(0.99); }
+            100% { transform: translateY(0) scaleY(1); }
+        }
+        @keyframes mma-redbar {
+            0%   { transform: scaleX(0); opacity: 1; }
+            40%  { transform: scaleX(1); opacity: 1; }
+            70%  { transform: scaleX(1); opacity: 0; }
+            100% { transform: scaleX(1); opacity: 0; }
+        }
+
+        .mission-redbar {
+            display: block;
+            height: 4px;
+            background: var(--cro-red);
+            transform-origin: left center;
+            margin-bottom: 1rem;
+            animation: mma-redbar 0.8s ease 0.1s both;
+            animation-play-state: paused;
+        }
+        .reveal.active .mission-redbar {
+            animation-play-state: running;
+        }
+        .mission-eyebrow {
+            animation: mma-label-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+            animation-play-state: paused;
+        }
+        .reveal.active .mission-eyebrow {
+            animation-play-state: running;
+        }
+        .mission-line {
+            display: block;
+            animation: mma-stamp 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+            animation-play-state: paused;
+        }
+        .reveal.active .mission-line:nth-child(1) {
+            animation-delay: 0.35s;
+            animation-play-state: running;
+        }
+        .reveal.active .mission-line:nth-child(2) {
+            animation-delay: 0.55s;
+            animation-play-state: running;
+        }
+
+        /* Scrub Progress Text */
+        .scrub-text {
+            background: linear-gradient(90deg, var(--cro-red) 0%, var(--cro-red) var(--progress, 0%), var(--text-muted) var(--progress, 0%), var(--text-muted) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--cro-red); }
+
+        /* Document Cards */
+        .doc-card {
+            background: var(--bg-slate);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .doc-card:hover {
+            border-color: rgba(200, 16, 46, 0.4);
+            transform: translateX(4px);
+            box-shadow: 0 0 30px rgba(200, 16, 46, 0.08);
+        }
+        .light-mode .doc-card {
+            background: #fff;
+            border-color: rgba(0,0,0,0.07);
+        }
+        .doc-icon {
+            width: 56px;
+            height: 56px;
+            min-width: 56px;
+            background: rgba(200, 16, 46, 0.1);
+            border: 1px solid rgba(200, 16, 46, 0.2);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Kontakt Cards */
+        .kontakt-card {
+            background: var(--bg-slate);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 2rem;
+            padding: 3rem;
+            transition: all 0.3s ease;
+        }
+        .kontakt-card:hover {
+            border-color: rgba(200, 16, 46, 0.3);
+            transform: translateY(-4px);
+        }
+        .light-mode .kontakt-card {
+            background: #fff;
+            border-color: rgba(0,0,0,0.07);
+        }
+
+        /* Scroll-to-top */
+        #scrollTop {
+            position: fixed;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            width: 52px;
+            height: 52px;
+            background: var(--cro-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 20px rgba(200, 16, 46, 0.4);
+        }
+        #scrollTop.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        #scrollTop:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(200, 16, 46, 0.6);
+        }
+
+        /* Active nav link */
+        .nav-active {
+            color: var(--cro-red) !important;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="noise-overlay"></div>
+    <div class="glow-orb orb-red" id="orbRed"></div>
+    <div class="glow-orb orb-blue" id="orbBlue"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-[100] transition-all duration-500 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="flex items-center gap-3 transition-transform hover:scale-[1.03] duration-300 group">
+                    <div class="w-[3px] h-10 bg-[--cro-red] flex-shrink-0"></div>
+                    <div class="flex flex-col leading-none font-black italic">
+                        <span class="masked-text text-[30px] md:text-[38px] tracking-[-0.04em] block">HRVATSKI</span>
+                        <span class="masked-text text-[14px] md:text-[18px] tracking-[0.42em] block mt-0.5 md:mt-1">MMA SAVEZ</span>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Desktop Links -->
+            <div class="hidden lg:flex items-center gap-8 text-[11px] font-black tracking-[0.2em] uppercase">
+                <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="nav-desktop-link hover:text-[--cro-red] transition-colors" data-section="pocetna">Početna</a>
+                <a href="#vijesti" class="nav-desktop-link hover:text-[--cro-red] transition-colors" data-section="vijesti">Vijesti</a>
+                <a href="#savez" class="nav-desktop-link hover:text-[--cro-red] transition-colors" data-section="savez">Savez</a>
+                <a href="#kalendar" class="nav-desktop-link hover:text-[--cro-red] transition-colors" data-section="kalendar">Kalendar</a>
+                <a href="#dokumenti" class="nav-desktop-link hover:text-[--cro-red] transition-colors" data-section="dokumenti">Dokumenti</a>
+                <a href="#kontakt" class="nav-desktop-link hover:text-[--cro-red] transition-colors" data-section="kontakt">Kontakt</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <!-- Theme Toggle -->
+                <div class="hidden md:flex items-center gap-2">
+                    <span class="text-[8px] font-bold uppercase tracking-widest opacity-50">☀</span>
+                    <div id="themeToggle" class="theme-toggle">
+                        <div class="dot"></div>
+                    </div>
+                    <span class="text-[8px] font-bold uppercase tracking-widest opacity-50">☾</span>
+                </div>
+
+                <div class="nav-divider hidden md:block"></div>
+
+                <div class="hidden md:flex items-center gap-2">
+                    <a href="https://mma-app-2.vercel.app/login" target="_blank" rel="noopener" class="btn-secondary px-5 py-3 font-black uppercase tracking-widest text-[10px] block text-center">
+                        Prijavi se
+                    </a>
+                    <a href="javascript:void(0)" class="btn-premium px-6 py-3 bg-[--cro-red] text-white font-black uppercase tracking-widest text-[10px] block text-center" onclick="openModal('regModal')" style="clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);">
+                        Učlani se →
+                    </a>
+                </div>
+                <!-- Mobile Menu Toggle -->
+                <button id="menuToggle" class="lg:hidden p-2 text-[--text-main] focus:outline-none" aria-label="Otvori izbornik">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu" class="fixed inset-0 bg-black/98 z-[200] lg:hidden flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-500 ease-in-out">
+            <button id="menuClose" class="absolute top-10 right-10 text-white" aria-label="Zatvori izbornik">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="nav-link text-3xl font-bold uppercase tracking-[.2em] hover:text-[--cro-red] transition-colors">Početna</a>
+            <a href="#vijesti" class="nav-link text-3xl font-bold uppercase tracking-[.2em] hover:text-[--cro-red] transition-colors">Vijesti</a>
+            <a href="#savez" class="nav-link text-3xl font-bold uppercase tracking-[.2em] hover:text-[--cro-red] transition-colors">Savez</a>
+            <a href="#kalendar" class="nav-link text-3xl font-bold uppercase tracking-[.2em] hover:text-[--cro-red] transition-colors">Kalendar</a>
+            <a href="#dokumenti" class="nav-link text-3xl font-bold uppercase tracking-[.2em] hover:text-[--cro-red] transition-colors">Dokumenti</a>
+            <a href="#kontakt" class="nav-link text-3xl font-bold uppercase tracking-[.2em] hover:text-[--cro-red] transition-colors">Kontakt</a>
+            <div class="flex flex-col gap-4 w-full px-10 mt-4">
+                <a href="https://mma-app-2.vercel.app/login" target="_blank" rel="noopener" class="btn-secondary px-10 py-5 text-white font-bold uppercase tracking-widest text-center">Prijavi se</a>
+                <a href="javascript:void(0)" class="btn-premium px-10 py-5 bg-[--cro-red] text-white font-bold uppercase tracking-widest text-center" onclick="openModal('regModal')">Učlani se</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- News Ticker -->
+    <div class="news-ticker">
+        <div class="ticker-live"><div class="ticker-live-dot"></div>LIVE</div>
+        <div style="position:relative;flex:1;overflow:hidden;height:100%;display:flex;align-items:center;">
+            <div class="ticker-track">
+                <div class="ticker-item"><span>PRVENSTVO</span> NOVI ŠAMPION TEŠKE KATEGORIJE — MARKO HORVAT <span class="ticker-separator">◆</span></div>
+                <div class="ticker-item"><span>DOGAĐAJ</span> CROATIA OPEN 2026 · ARENA ZAGREB · PRODAJA KARATA <span class="ticker-separator">◆</span></div>
+                <div class="ticker-item"><span>SAVEZ</span> EDUKACIJA ZA NOVE SUCE POD VODSTVOM IMMAF-A <span class="ticker-separator">◆</span></div>
+                <div class="ticker-item"><span>RANKING</span> PULA FIGHT NIGHT — NOVE PROMJENE U PORETKU <span class="ticker-separator">◆</span></div>
+                <!-- Duplicated for seamless loop -->
+                <div class="ticker-item"><span>PRVENSTVO</span> NOVI ŠAMPION TEŠKE KATEGORIJE — MARKO HORVAT <span class="ticker-separator">◆</span></div>
+                <div class="ticker-item"><span>DOGAĐAJ</span> CROATIA OPEN 2026 · ARENA ZAGREB · PRODAJA KARATA <span class="ticker-separator">◆</span></div>
+                <div class="ticker-item"><span>SAVEZ</span> EDUKACIJA ZA NOVE SUCE POD VODSTVOM IMMAF-A <span class="ticker-separator">◆</span></div>
+                <div class="ticker-item"><span>RANKING</span> PULA FIGHT NIGHT — NOVE PROMJENE U PORETKU <span class="ticker-separator">◆</span></div>
+            </div>
+            <div class="ticker-fade-right"></div>
+        </div>
+    </div>
+
+    <!-- Bento News Section (featured top block) -->
+    <section id="istaknuto" class="pt-40 pb-32 bg-[--bg-slate] relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 reveal">
+                <div class="text-center md:text-left">
+                    <p class="text-[--cro-red] text-xs uppercase font-black tracking-[.5em] mb-5 eyebrow-animate">Hrvatski MMA Svijet</p>
+                    <h2 class="section-heading font-black mb-4 leading-tight uppercase" style="font-size: clamp(2.5rem, 5.5vw, 5rem);">
+                        <span class="heading-word"><span>Najnovije</span></span>
+                        <span class="heading-word"><span>Vijesti</span></span>
+                    </h2>
+                    <div class="w-32 h-1 bg-[--cro-red] mx-auto md:mx-0"></div>
+                </div>
+                <div class="mt-8 md:mt-0">
+                    <a href="#" class="btn-premium px-8 py-4 border border-[--text-muted]/30 text-xs font-bold uppercase tracking-widest text-[--text-muted] hover:text-[--text-main] transition-colors bg-white/5">
+                        Sve vijesti &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[800px] reveal" style="transition-delay: 200ms;">
+                <!-- Large Feature -->
+                <div class="md:col-span-2 md:row-span-2 bento-card glass rounded-3xl group min-h-[400px] overflow-hidden cursor-pointer" onclick="openModal('newsModal',{articleId:'drzavno-prvenstvo'})"
+                    <img src="mma_crowd_cinematic_bg_1773263499538.png" alt="Featured News" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    <div class="absolute bottom-0 p-10">
+                        <span class="inline-block px-4 py-1 bg-[--cro-red] text-[10px] font-bold uppercase tracking-widest mb-4">DRŽAVNO PRVENSTVO</span>
+                        <h3 class="text-4xl font-bold mb-4 leading-tight text-white">Najavljeno amatersko državno prvenstvo u Zagrebu</h3>
+                        <p class="text-gray-300 line-clamp-2 font-light">Pridružite nam se u Domu Sportova na najvećem amaterskom MMA događaju godine u Hrvatskoj.</p>
+                    </div>
+                </div>
+
+                <!-- Secondary 1 -->
+                <div class="md:col-span-2 bento-card glass rounded-3xl overflow-hidden group trace-box relative cursor-pointer" onclick="openModal('newsModal',{title:'Seminar za MMA suce pod vodstvom međunarodnih stručnjaka',category:'Edukacija'})">
+                    <img src="mma_news_championship_1773261249907.png" alt="Referee Seminar" class="absolute inset-0 w-full h-full object-cover opacity-65 group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-white/60 text-[10px] font-bold uppercase tracking-widest">EDUKACIJA</span>
+                            <span class="text-white/60 text-[10px]">LISTOPAD 2026</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2 text-white group-hover:text-[--cro-red] transition-colors">Seminar za MMA suce</h3>
+                        <p class="text-white/70 font-light text-sm line-clamp-1">Usavršavanje kriterija bodovanja i sigurnosti boraca.</p>
+                    </div>
+                </div>
+
+                <!-- Small 1 -->
+                <div class="bento-card glass rounded-3xl overflow-hidden group trace-box relative cursor-pointer" onclick="openModal('newsModal',{title:'HMMS suradnja s antidoping agencijom',category:'Savez'})">
+                    <img src="mma_fighter_portrait_2_1773261280100.png" alt="Antidoping" class="absolute inset-0 w-full h-full object-cover opacity-60 object-top group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent/20"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+                        <h3 class="text-lg font-bold mb-2 text-white group-hover:text-[--cro-red] transition-colors">Clean Sport</h3>
+                        <p class="text-white/70 font-light text-[10px]">Suradnja s WADA-om.</p>
+                    </div>
+                </div>
+
+                <!-- Small 2 -->
+                <div class="glass rounded-3xl bento-card overflow-hidden group trace-box relative cursor-pointer">
+                    <img src="mma_event_arena_1773326412979.png" alt="Partner saveza" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20"></div>
+                    <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+                        <span class="text-white/60 text-[10px] font-black uppercase tracking-widest mb-3">Partnerstvo</span>
+                        <h3 class="text-lg font-bold mb-2 text-white group-hover:text-[--cro-red] transition-colors">Postani partner saveza</h3>
+                        <p class="text-white/70 font-light text-[10px]">Pred 100,000+ fanova.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- New Hero Section (Now Second) with Rights and Lefts Parallax -->
+    <section id="pocetna" class="relative min-h-screen flex items-center justify-center py-32 overflow-hidden bg-[--bg-dark]" style="display:none">
+        <!-- Parallax Background Elements -->
+        <span class="parallax-text top-20 left-0" id="paraLeft">CROATIAN</span>
+        <span class="parallax-text bottom-20 right-0" id="paraRight">FEDERATION</span>
+
+        <div class="absolute inset-0 z-0">
+            <div class="w-full h-full bg-[#111] opacity-40 grayscale" id="heroImage" style="background-image: radial-gradient(circle, #333 1px, transparent 1px); background-size: 30px 30px;"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-[--bg-slate] via-transparent to-[--bg-dark]"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <p class="text-[--cro-red] uppercase tracking-[0.4em] font-bold text-sm mb-6 reveal">Oblikujemo Budućnost</p>
+            <h1 class="text-6xl md:text-8xl lg:text-[10rem] font-bold leading-none mb-8 masked-text reveal" style="transition-delay: 200ms;">
+                HMMS<br>SAVEZ
+            </h1>
+            <p class="text-lg md:text-2xl text-[--text-muted] max-w-3xl mx-auto mb-10 font-light reveal" style="transition-delay: 400ms;">
+                Službeno upravljačko tijelo za mješovite borilačke vještine u Republici Hrvatskoj. Unificiramo klubove, educiramo suce i stvaramo svjetske prvake.
+            </p>
+            <div class="flex flex-col md:flex-row gap-6 justify-center items-center reveal" style="transition-delay: 600ms;">
+                <div class="btn-wrap">
+                    <a href="#vijesti" class="btn-premium px-10 py-5 bg-[--cro-red] text-white font-black uppercase tracking-widest text-sm block">
+                        Najnovije Vijesti
+                    </a>
+                </div>
+                <div class="btn-wrap">
+                    <a href="#kalendar" class="btn-premium px-10 py-5 border border-[--cro-red]/30 hover:border-[--cro-red] text-[--text-main] font-black uppercase tracking-widest text-sm bg-black/40 block">
+                        Kalendar Natjecanja
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Institutional Affiliations Strip -->
+    <section class="py-16 bg-[--bg-dark] relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap items-center justify-center gap-20 md:gap-32">
+
+                <!-- Croatian Olympic Committee -->
+                <div class="group opacity-60 hover:opacity-100 transition-opacity duration-500">
+                    <img src="logo_hoo.png.png" alt="Hrvatski Olimpijski Odbor" class="h-32 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500">
+                </div>
+
+                <!-- Divider -->
+                <div class="w-px h-16 bg-white/10 hidden md:block"></div>
+
+                <!-- UFC -->
+                <div class="group opacity-60 hover:opacity-100 transition-opacity duration-500">
+                    <img src="logo_ufc.png.png" alt="UFC" class="h-20 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500">
+                </div>
+
+                <!-- Divider -->
+                <div class="w-px h-16 bg-white/10 hidden md:block"></div>
+
+                <!-- Global Association -->
+                <div class="group opacity-60 hover:opacity-100 transition-opacity duration-500">
+                    <img src="logo_gaisf.png.png" alt="Global Association" class="h-20 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="savez" class="py-32 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="reveal">
+                    <span class="mission-redbar"></span>
+                    <h4 class="text-[--cro-red] font-bold tracking-[.3em] uppercase text-xs mb-6 mission-eyebrow">Naša Misija</h4>
+                    <h2 class="text-6xl md:text-7xl font-black mb-8 leading-tight scrub-text" id="scrubMission">
+                        <span class="mission-line">SNAGA KROZ</span>
+                        <span class="mission-line">JEDINSTVO</span>
+                    </h2>
+                    <p class="text-[--text-muted] text-lg mb-8 leading-relaxed font-light">
+                        Hrvatski MMA Savez (HMMS) osnovan je s ciljem standardizacije i promocije slobodne borbe u Hrvatskoj. Kao jedini službeni predstavnik pri međunarodnim tijelima, naš fokus je na sigurnosti boraca, vrhunskoj stručnosti te razvoju mladih talenata od baze do svjetskog vrha.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8 py-8 border-t border-[--text-muted]/10">
+                        <div class="reveal">
+                            <span class="block text-5xl font-bold text-[--text-main] mb-2 impact-text" data-counter="45" data-suffix="+">45+</span>
+                            <span class="text-[--cro-red] uppercase font-bold tracking-[.2em] text-[10px]">Aktivnih Klubova</span>
+                        </div>
+                        <div class="reveal" style="transition-delay: 100ms;">
+                            <span class="block text-5xl font-bold text-[--text-main] mb-2 impact-text" data-counter="1200" data-suffix="+">1200+</span>
+                            <span class="text-[--cro-red] uppercase font-bold tracking-[.2em] text-[10px]">Registriranih Boraca</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative reveal tilt-card" style="transition-delay: 300ms;">
+                    <div class="tilt-inner w-full aspect-square glass rounded-[3rem] relative overflow-hidden flex items-center justify-center group cursor-pointer shadow-2xl">
+                        <img src="mma_hero_cage_croatia_1773261233148.png" alt="MMA Action" class="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-1000">
+                        <div class="absolute inset-0 bg-gradient-to-br from-[--cro-red]/10 to-[--cro-blue]/10 opacity-30"></div>
+                        <span class="impact-text text-white/5 text-[12rem] select-none group-hover:scale-125 transition-transform duration-1000 z-10">UNITY</span>
+                        <div class="absolute w-24 h-24 bg-[--cro-red] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-[0_0_50px_rgba(200,16,46,0.5)] z-20">
+                             <svg class="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.333-5.89a1.5 1.5 0 000-2.538L6.3 2.841z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-4 mt-32">
+
+                <!-- Vizija 2030 -->
+                <div class="reveal group relative overflow-hidden cursor-default savez-card" style="transition-delay: 0ms; background: #0d0d0d; border: 1px solid rgba(255,255,255,0.07); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);">
+                    <div class="absolute left-0 top-0 bottom-0 w-[3px] bg-[--cro-red] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-[--cro-red] via-[--cro-red]/50 to-transparent"></div>
+                    <div class="p-8">
+                        <p class="text-[--cro-red] text-[9px] font-black uppercase tracking-[.5em] mb-4">Vizija 2030</p>
+                        <h4 class="savez-card-title text-2xl font-black italic uppercase leading-tight mb-4 text-white group-hover:text-[--cro-red] transition-colors duration-300">Postati<br>br. 1 u regiji.</h4>
+                        <p class="savez-card-body text-white/40 text-xs font-light leading-relaxed">
+                            Integracija MMA-a u primarni sustav sporta. Hrvatski borci na postoljima svjetskih prvenstava. Infrastruktura koja prati europske standarde — do 2030. bez kompromisa.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Vodstvo -->
+                <div class="reveal group relative overflow-hidden cursor-default savez-card" style="transition-delay: 150ms; background: #0d0d0d; border: 1px solid rgba(255,255,255,0.07); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);">
+                    <div class="absolute left-0 top-0 bottom-0 w-[3px] bg-[--cro-red] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-[--cro-red] via-[--cro-red]/50 to-transparent"></div>
+                    <div class="p-8">
+                        <p class="text-[--cro-red] text-[9px] font-black uppercase tracking-[.5em] mb-4">Vodstvo</p>
+                        <h4 class="savez-card-title text-2xl font-black italic uppercase leading-tight mb-4 text-white group-hover:text-[--cro-red] transition-colors duration-300">Integritet<br>na prvom mjestu.</h4>
+                        <p class="savez-card-body text-white/40 text-xs font-light leading-relaxed">
+                            Stručni odbori, liječnici i veterani sporta donose svaku odluku. Transparentni procesi, jasna pravila, nulta tolerancija na doping i nepravilnosti u svim kategorijama.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Edu Centar -->
+                <div class="reveal group relative overflow-hidden cursor-default savez-card" style="transition-delay: 300ms; background: #0d0d0d; border: 1px solid rgba(255,255,255,0.07); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);">
+                    <div class="absolute left-0 top-0 bottom-0 w-[3px] bg-[--cro-red] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-[--cro-red] via-[--cro-red]/50 to-transparent"></div>
+                    <div class="p-8">
+                        <p class="text-[--cro-red] text-[9px] font-black uppercase tracking-[.5em] mb-4">Edu Centar</p>
+                        <h4 class="savez-card-title text-2xl font-black italic uppercase leading-tight mb-4 text-white group-hover:text-[--cro-red] transition-colors duration-300">Znanje<br>gradi prvake.</h4>
+                        <p class="savez-card-body text-white/40 text-xs font-light leading-relaxed">
+                            Prva nacionalna platforma za licenciranje trenera i sudaca. Programi po IMMAF standardima, online i uživo — jer kvalitetan sport počinje od kvalitetnih ljudi u kutu.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Clubs Directory -->
+    <section id="klubovi" class="py-32 bg-[--bg-slate] relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-20 reveal">
+                <div>
+                    <h2 class="text-6xl font-bold mb-4 klub-heading">KLUBSKA SCENA</h2>
+                    <p class="text-[--cro-red] tracking-[.5em] uppercase text-[10px] font-bold eyebrow-animate">Mreža izvrsnosti širom Hrvatske</p>
+                </div>
+                <div class="mt-8 md:mt-0 w-full md:w-96">
+                    <input type="text" id="clubSearch" placeholder="PRETRAŽI KLUBOVE..." class="premium-input uppercase tracking-widest text-xs font-bold">
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 reveal" style="transition-delay: 200ms;" id="clubGrid">
+                <!-- Club 1 -->
+                <div class="club-card trace-box group cursor-pointer" onclick="openModal('clubModal',{clubId:'crows'})">
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden shadow-lg border border-white/10">
+                            <img src="logo_crows_1773326271491.png" alt="Crows Logo" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold uppercase tracking-tight">UFK Crows</h3>
+                            <p class="text-[--cro-red] text-[10px] font-bold uppercase tracking-widest">Zagreb</p>
+                        </div>
+                    </div>
+                    <p class="text-[--text-muted] text-sm font-light mb-8 leading-relaxed">
+                        Specijalizirani za grappling i moderni MMA pristup. Dom mnogih državnih prvaka.
+                    </p>
+                    <span class="text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2 group-hover:text-[--cro-red] transition-colors">
+                        Saznaj više <span class="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                    </span>
+                </div>
+                <!-- Club 2 -->
+                <div class="club-card trace-box group">
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden shadow-lg border border-white/10">
+                            <img src="logo_banteam_1773326308935.png" alt="Ban Team Logo" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold uppercase tracking-tight">Ban Team</h3>
+                            <p class="text-[--cro-red] text-[10px] font-bold uppercase tracking-widest">Zagreb</p>
+                        </div>
+                    </div>
+                    <p class="text-[--text-muted] text-sm font-light mb-8 leading-relaxed">
+                        Najstariji MMA klub u Hrvatskoj s bogatom poviješću internacionalnih boraca.
+                    </p>
+                    <a href="#" class="text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2 group-hover:text-[--cro-red] transition-colors">
+                        Saznaj više <span class="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                    </a>
+                </div>
+                <!-- Club 3 -->
+                <div class="club-card trace-box group">
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden shadow-lg border border-white/10">
+                            <img src="logo_trojana_1773326342979.png" alt="Trojana Logo" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold uppercase tracking-tight">Trojana Pula</h3>
+                            <p class="text-[--cro-red] text-[10px] font-bold uppercase tracking-widest">Pula</p>
+                        </div>
+                    </div>
+                    <p class="text-[--text-muted] text-sm font-light mb-8 leading-relaxed">
+                        Predvođeni legendarnim Zelgom Galešićem, Trojana je simbol istarskog MMA-a.
+                    </p>
+                    <a href="#" class="text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2 group-hover:text-[--cro-red] transition-colors">
+                        Saznaj više <span class="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                    </a>
+                </div>
+                <!-- Club 4 -->
+                <div class="club-card trace-box group">
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden shadow-lg border border-white/10 bg-gradient-to-br from-gray-800 to-black flex items-center justify-center">
+                            <span class="text-[--cro-red] font-black italic">ATT</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold uppercase tracking-tight">ATT Zagreb</h3>
+                            <p class="text-[--cro-red] text-[10px] font-bold uppercase tracking-widest">Zagreb</p>
+                        </div>
+                    </div>
+                    <p class="text-[--text-muted] text-sm font-light mb-8 leading-relaxed">
+                        Vrhunski centar za profesionalne borce s najboljom dvoranom u regiji.
+                    </p>
+                    <a href="#" class="text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2 group-hover:text-[--cro-red] transition-colors">
+                        Saznaj više <span class="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                    </a>
+                </div>
+                <!-- Club 5 -->
+                <div class="club-card trace-box group">
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden shadow-lg border border-white/10 bg-gradient-to-br from-gray-800 to-black flex items-center justify-center">
+                            <span class="text-[--cro-red] font-black italic">GDB</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold uppercase tracking-tight">Gladiator Dubrovnik</h3>
+                            <p class="text-[--cro-red] text-[10px] font-bold uppercase tracking-widest">Dubrovnik</p>
+                        </div>
+                    </div>
+                    <p class="text-[--text-muted] text-sm font-light mb-8 leading-relaxed">
+                        Klub koji dugi niz godina stvara vrhunske teškaše i KSW šampione.
+                    </p>
+                    <a href="#" class="text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2 group-hover:text-[--cro-red] transition-colors">
+                        Saznaj više <span class="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                    </a>
+                </div>
+                <!-- Club 6 -->
+                <div class="club-card trace-box group">
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden shadow-lg border border-white/10 bg-gradient-to-br from-gray-800 to-black flex items-center justify-center">
+                            <span class="text-[--cro-red] font-black italic">MDS</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold uppercase tracking-tight">MDS Varaždin</h3>
+                            <p class="text-[--cro-red] text-[10px] font-bold uppercase tracking-widest">Varaždin</p>
+                        </div>
+                    </div>
+                    <p class="text-[--text-muted] text-sm font-light mb-8 leading-relaxed">
+                        Predanost tradiciji i vrhunskom grapplingu na sjeveru Hrvatske.
+                    </p>
+                    <a href="#" class="text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2 group-hover:text-[--cro-red] transition-colors">
+                        Saznaj više <span class="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                    </a>
+                </div>
+                <!-- Club 7 -->
+                <div class="club-card trace-box group">
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden shadow-lg border border-white/10 bg-gradient-to-br from-gray-800 to-black flex items-center justify-center">
+                            <span class="text-[--cro-red] font-black italic">PRM</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold uppercase tracking-tight">Prime Poreč</h3>
+                            <p class="text-[--cro-red] text-[10px] font-bold uppercase tracking-widest">Poreč</p>
+                        </div>
+                    </div>
+                    <p class="text-[--text-muted] text-sm font-light mb-8 leading-relaxed">
+                        Središte istarskog MMA-a s fokusom na razvoj mladih nada i tehničku izvrsnost.
+                    </p>
+                    <a href="#" class="text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2 group-hover:text-[--cro-red] transition-colors">
+                        Saznaj više <span class="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                    </a>
+                </div>
+                <!-- Club 8 -->
+                <div class="club-card trace-box group">
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden shadow-lg border border-white/10 bg-gradient-to-br from-gray-800 to-black flex items-center justify-center">
+                            <span class="text-[--cro-red] font-black italic">UFK</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold uppercase tracking-tight">UFK Trešnjevka</h3>
+                            <p class="text-[--cro-red] text-[10px] font-bold uppercase tracking-widest">Zagreb</p>
+                        </div>
+                    </div>
+                    <p class="text-[--text-muted] text-sm font-light mb-8 leading-relaxed">
+                        Legendarni klub koji gaji agresivan i atraktivan stil slobodne borbe.
+                    </p>
+                    <a href="#" class="text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2 group-hover:text-[--cro-red] transition-colors">
+                        Saznaj više <span class="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                    </a>
+                </div>
+                <!-- Club 9 -->
+                <div class="club-card trace-box group">
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden shadow-lg border border-white/10 bg-gradient-to-br from-gray-800 to-black flex items-center justify-center">
+                            <span class="text-[--cro-red] font-black italic">LTS</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold uppercase tracking-tight">Lotus Split</h3>
+                            <p class="text-[--cro-red] text-[10px] font-bold uppercase tracking-widest">Split</p>
+                        </div>
+                    </div>
+                    <p class="text-[--text-muted] text-sm font-light mb-8 leading-relaxed">
+                        Prvak Dalmacije u razvoju baze i svestranih borilačkih vještina.
+                    </p>
+                    <a href="#" class="text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2 group-hover:text-[--cro-red] transition-colors">
+                        Saznaj više <span class="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponzori -->
+    <section class="py-32 bg-black relative overflow-hidden sponsor-section">
+        <!-- Subtle red glow top-left -->
+        <div class="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(200,16,46,0.12) 0%, transparent 70%);"></div>
+        <!-- Red diagonal accent line -->
+        <div class="absolute top-0 left-0 w-full h-[2px]" style="background: linear-gradient(90deg, var(--cro-red) 0%, rgba(200,16,46,0.3) 60%, transparent 100%);"></div>
+        <div class="absolute bottom-0 left-0 w-full h-[1px]" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);"></div>
+
+        <div class="container mx-auto px-6">
+
+            <!-- Top: eyebrow + headline + stats -->
+            <div class="reveal grid lg:grid-cols-2 gap-16 items-end mb-20">
+                <div>
+                    <p class="text-[--cro-red] text-[10px] uppercase font-black tracking-[.5em] mb-6">Partneri & Sponzori</p>
+                    <h2 class="font-black uppercase leading-[0.9] text-white mb-8" style="font-size: clamp(3.5rem, 7vw, 6.5rem); font-style: italic;">Vaš brand.<br><span style="color: rgba(255,255,255,0.25);">Naša arena.</span></h2>
+                    <p class="text-white/50 text-base font-light leading-relaxed max-w-md">
+                        Povežite vaš brand s 100,000+ MMA navijača diljem Hrvatske. Sponzorstvo nije samo logo — to je prisutnost na svakom meču, u svakom klubu, u svakoj priči.
+                    </p>
+                </div>
+                <!-- Impact stats -->
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="border-l-2 border-[--cro-red] pl-5">
+                        <p class="text-white font-black text-4xl leading-none mb-1">100K+</p>
+                        <p class="text-white/40 text-[10px] uppercase tracking-widest font-bold">Navijača</p>
+                    </div>
+                    <div class="border-l-2 border-white/15 pl-5">
+                        <p class="text-white font-black text-4xl leading-none mb-1">50+</p>
+                        <p class="text-white/40 text-[10px] uppercase tracking-widest font-bold">MMA klubova</p>
+                    </div>
+                    <div class="border-l-2 border-white/15 pl-5">
+                        <p class="text-white font-black text-4xl leading-none mb-1">20+</p>
+                        <p class="text-white/40 text-[10px] uppercase tracking-widest font-bold">Događaja/god.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA card -->
+            <div class="reveal mb-20" style="background: linear-gradient(135deg, var(--cro-red) 0%, #8B0018 100%); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%); padding: 3px;">
+                <div class="grid lg:grid-cols-2 gap-0 items-center" style="background: linear-gradient(135deg, #C8102E 0%, #7a0016 100%); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 23px), calc(100% - 23px) 100%, 0 100%);">
+                    <div class="p-12 lg:p-16">
+                        <p class="text-white/60 text-[10px] font-black uppercase tracking-[.4em] mb-4">Postanite partner</p>
+                        <h3 class="text-white font-black italic uppercase leading-tight mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem);">Budite dio<br>pokreta.</h3>
+                        <p class="text-white/70 text-sm font-light leading-relaxed max-w-sm">
+                            Vaš logo na dresu, banneru i live streamu. Direktan kontakt s jedinom MMA zajednicom u Hrvatskoj koja raste iz sezone u sezonu.
+                        </p>
+                    </div>
+                    <div class="p-12 lg:p-16 flex flex-col justify-center gap-5 lg:border-l lg:border-white/20">
+                        <div class="flex items-center gap-4 text-white/80 text-sm">
+                            <span class="text-white font-black text-xl">✓</span> Branding na svim natjecanjima
+                        </div>
+                        <div class="flex items-center gap-4 text-white/80 text-sm">
+                            <span class="text-white font-black text-xl">✓</span> Prisutnost na društvenim mrežama
+                        </div>
+                        <div class="flex items-center gap-4 text-white/80 text-sm">
+                            <span class="text-white font-black text-xl">✓</span> VIP pristup svim događajima
+                        </div>
+                        <div class="flex items-center gap-4 text-white/80 text-sm">
+                            <span class="text-white font-black text-xl">✓</span> Ekskluzivni partnerski paketi
+                        </div>
+                        <a href="#kontakt" class="mt-4 inline-flex items-center justify-center gap-3 bg-white text-black font-black uppercase tracking-widest text-sm px-10 py-5 transition-all duration-300 hover:bg-black hover:text-white" style="clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);">
+                            Postani sponzor <span class="text-lg">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logo strip — always white background -->
+            <div class="reveal">
+                <div class="mb-10 text-center">
+                    <p class="text-[--cro-red] text-[10px] font-black uppercase tracking-[.5em] mb-3">Naši sponzori</p>
+                    <h3 class="text-white font-black italic uppercase leading-tight" style="font-size: clamp(2.5rem, 5vw, 4rem);">Brandovi koji<br><span style="color:rgba(255,255,255,0.3);">vjeruju u sport.</span></h3>
+                </div>
+                <div class="rounded-2xl p-10 md:p-14 grid grid-cols-4 gap-10 md:gap-16 items-center" style="background:#ffffff;">
+                    <img src="sponsor_titan_sports_1773326869929.png" alt="Titan Sports" class="sponsor-logo object-contain w-full" style="max-height:160px;">
+                    <img src="sponsor_apex_nutrition_1773326884695.png" alt="Apex Nutrition" class="sponsor-logo object-contain w-full" style="max-height:160px;">
+                    <img src="sponsor_gladiator_gear_1773326898140.png" alt="Gladiator Gear" class="sponsor-logo object-contain w-full" style="max-height:160px;">
+                    <img src="sponsor_ironfist_1773326918558.png" alt="Iron Fist MMA" class="sponsor-logo object-contain w-full" style="max-height:160px;">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Vijesti — Full News Grid -->
+    <section id="vijesti" class="py-32 bg-[#050505] relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[--cro-red]/30 to-transparent"></div>
+
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                <div>
+                    <p class="text-[--cro-red] text-xs uppercase font-black tracking-[.5em] mb-5 eyebrow-animate">Hrvatski MMA Svijet</p>
+                    <h2 class="section-heading font-black leading-tight uppercase" style="font-size: clamp(2.5rem, 5.5vw, 5rem);">
+                        <span class="heading-word"><span>Vijesti</span></span>
+                    </h2>
+                </div>
+                <div class="mt-8 md:mt-0">
+                    <a href="#" class="btn-premium px-8 py-4 border border-[--text-muted]/30 text-xs font-bold uppercase tracking-widest text-[--text-muted] hover:text-[--text-main] transition-colors bg-white/5">
+                        Arhiva vijesti &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <!-- News 1 — large featured (spans 2 cols) -->
+                <div class="md:col-span-2 reveal" style="transition-delay: 0ms;">
+                    <article class="bento-card glass rounded-3xl overflow-hidden relative group min-h-[340px] trace-box cursor-pointer" onclick="openModal('newsModal',{articleId:'drzavno-prvenstvo'})">
+                        <img src="mma_news_placeholder_1773326072194.png" alt="News Image" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent z-10"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-10 z-20">
+                            <div class="flex items-center gap-4 mb-4">
+                                <span class="px-3 py-1 bg-[--cro-red] text-[10px] font-black uppercase tracking-widest">Državno Prvenstvo</span>
+                                <span class="text-white/40 text-xs">15. Siječnja 2026.</span>
+                            </div>
+                            <h3 class="text-3xl font-bold text-white mb-3 leading-snug group-hover:text-[--cro-red] transition-colors">Najavljeno amatersko državno prvenstvo u Zagrebu</h3>
+                            <p class="text-white/60 text-sm font-light line-clamp-2">Pridružite nam se u Domu Sportova na najvećem amaterskom MMA događaju godine. Prijave otvorene za sve registrirane klubove.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- News 2 -->
+                <div class="reveal" style="transition-delay: 80ms;">
+                    <article class="bento-card glass rounded-3xl overflow-hidden group trace-box cursor-pointer h-full flex flex-col" onclick="openModal('newsModal',{title:'Seminar za MMA suce pod vodstvom međunarodnih stručnjaka',category:'Edukacija'})">
+                        <div class="h-40 overflow-hidden relative">
+                             <img src="mma_news_referee_1773326383760.png" alt="Edukacija" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-all duration-700">
+                             <div class="absolute inset-0 bg-gradient-to-t from-[#111] to-transparent"></div>
+                        </div>
+                        <div class="p-8 pt-4 flex-1 flex flex-col">
+                            <div class="flex justify-between items-start mb-5">
+                                <span class="text-[--cro-red] text-[10px] font-black uppercase tracking-widest">Edukacija</span>
+                                <span class="text-[--text-muted] text-xs">Listopad 2026.</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 group-hover:text-[--cro-red] transition-colors leading-snug flex-1">Seminar za MMA suce pod vodstvom međunarodnih stručnjaka</h3>
+                            <p class="text-[--text-muted] text-sm font-light leading-relaxed">Usavršavanje kriterija bodovanja i sigurnosti boraca prema IMMAF standardima.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- News 3 -->
+                <div class="reveal" style="transition-delay: 160ms;">
+                    <article class="bento-card glass rounded-3xl overflow-hidden group trace-box cursor-pointer h-full flex flex-col" onclick="openModal('newsModal',{title:'HMMS potpisuje suradnju s antidoping agencijom',category:'Savez'})">
+                        <div class="h-40 overflow-hidden relative">
+                             <img src="mma_news_placeholder_1773326072194.png" alt="Savez" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-all duration-700">
+                             <div class="absolute inset-0 bg-gradient-to-t from-[#111] to-transparent"></div>
+                        </div>
+                        <div class="p-8 pt-4 flex-1 flex flex-col">
+                            <div class="flex justify-between items-start mb-5">
+                                <span class="text-[--cro-red] text-[10px] font-black uppercase tracking-widest">Savez</span>
+                                <span class="text-[--text-muted] text-xs">Prosinac 2025.</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 group-hover:text-[--cro-red] transition-colors leading-snug flex-1">HMMS potpisuje suradnju s antidoping agencijom WADA</h3>
+                            <p class="text-[--text-muted] text-sm font-light leading-relaxed">Osiguravamo "Clean Sport" standarde na svim razinama natjecanja u suradnji s WADA-om.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- News 4 -->
+                <div class="reveal" style="transition-delay: 240ms;">
+                    <article class="bento-card glass rounded-3xl overflow-hidden group trace-box cursor-pointer h-full flex flex-col" onclick="openModal('newsModal',{title:'Pula Fight Night — rezultati i promjene u nacionalnom poretku',category:'Natjecanje'})">
+                        <div class="h-40 overflow-hidden relative">
+                             <img src="mma_news_pula_1773326837226.png" alt="Pula Arena" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-all duration-700">
+                             <div class="absolute inset-0 bg-gradient-to-t from-[#111] to-transparent"></div>
+                        </div>
+                        <div class="p-8 pt-4 flex-1 flex flex-col">
+                            <div class="flex justify-between items-start mb-5">
+                                <span class="text-[--cro-red] text-[10px] font-black uppercase tracking-widest">Natjecanje</span>
+                                <span class="text-[--text-muted] text-xs">Studeni 2025.</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 group-hover:text-[--cro-red] transition-colors leading-snug flex-1">Pula Fight Night — rezultati i promjene u nacionalnom poretku</h3>
+                            <p class="text-[--text-muted] text-sm font-light leading-relaxed">Nakon spektakularnog večeri u Areni Pula, objavljen je novi nacionalni poredak u svim kategorijama.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- News 5 -->
+                <div class="reveal" style="transition-delay: 320ms;">
+                    <article class="bento-card glass rounded-3xl overflow-hidden group trace-box cursor-pointer h-full flex flex-col" onclick="openModal('newsModal',{title:'Hrvatska reprezentacija na IMMAF Europskom prvenstvu 2025',category:'Reprezentacija'})">
+                        <div class="h-40 overflow-hidden relative">
+                             <img src="mma_news_team_1773326855793.png" alt="National Team" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-all duration-700">
+                             <div class="absolute inset-0 bg-gradient-to-t from-[#111] to-transparent"></div>
+                        </div>
+                        <div class="p-8 pt-4 flex-1 flex flex-col">
+                            <div class="flex justify-between items-start mb-5">
+                                <span class="text-[--cro-red] text-[10px] font-black uppercase tracking-widest">Reprezentacija</span>
+                                <span class="text-[--text-muted] text-xs">Rujan 2025.</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 group-hover:text-[--cro-red] transition-colors leading-snug flex-1">Hrvatska reprezentacija na IMMAF Europskom prvenstvu 2025</h3>
+                            <p class="text-[--text-muted] text-sm font-light leading-relaxed">Dvanaest hrvatskih boraca nastupit će na europskom prvenstvu u Beogradu — najširi nastup u povijesti HMMS-a.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- News 6 — full width row -->
+                <div class="md:col-span-3 reveal" style="transition-delay: 400ms;">
+                    <article class="bento-card glass rounded-3xl p-8 group trace-box cursor-pointer flex flex-col md:flex-row md:items-center gap-8" onclick="openModal('newsModal',{title:'Novi pravilnik o licenciranju klubova i trenera na snazi od 2026.',category:'Propisi'})">
+                        <div class="flex-shrink-0">
+                            <span class="px-4 py-2 bg-[--cro-blue]/30 border border-[--cro-blue]/40 text-[--cro-blue] text-[10px] font-black uppercase tracking-widest rounded-full">Propisi</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold mb-2 group-hover:text-[--cro-red] transition-colors">Novi pravilnik o licenciranju klubova i trenera na snazi od 2026.</h3>
+                            <p class="text-[--text-muted] text-sm font-light">HMMS donosi ažurirani sustav licenciranja koji usklađuje hrvatske standarde s IMMAF pravilima. Svi klubovi dužni su ishoditi novu licencu do 1. ožujka 2026.</p>
+                        </div>
+                        <div class="flex-shrink-0 text-[--text-muted] text-xs font-bold uppercase tracking-widest whitespace-nowrap">Siječanj 2026.</div>
+                        <div class="flex-shrink-0">
+                            <span class="text-[--cro-red] font-black text-sm uppercase tracking-widest group-hover:translate-x-2 transition-transform inline-block">&rarr;</span>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="kalendar" class="py-32 bg-[--bg-dark] relative">
+        <div class="container mx-auto px-6">
+            <h2 class="text-6xl font-bold mb-16 reveal text-center section-heading">KALENDAR NATJECANJA <span class="text-[--cro-red]">2026</span></h2>
+            
+            <!-- Event Portal Portal -->
+            <div class="max-w-6xl mx-auto mb-20 reveal">
+                <div class="event-portal group overflow-hidden relative">
+                    <img src="mma_event_arena_1773326412979.png" alt="Arena Zagreb" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-40 group-hover:scale-105 transition-all duration-1000">
+                    <div class="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-black/20"></div>
+                    <div class="absolute bottom-0 left-0 right-0 h-24" style="background: linear-gradient(to top, var(--bg-dark), transparent)"></div>
+                    <div class="grid md:grid-cols-2 gap-16 items-center relative z-10">
+                        <!-- Left: Title + Countdown -->
+                        <div>
+                            <span class="text-[--cro-red] font-bold text-xs uppercase tracking-[0.5em] mb-5 block">SLJEDEĆI VELIKI DOGAĐAJ</span>
+                            <h3 class="text-7xl font-black italic mb-3 leading-none">CROATIA OPEN <br><span class="text-white/40">CHAMPIONSHIP</span></h3>
+                            <div class="flex items-center gap-4 mb-10 mt-4">
+                                <span class="text-white/40 text-xs uppercase tracking-widest font-bold">📍 Arena Zagreb</span>
+                                <span class="w-1 h-1 rounded-full bg-white/20"></span>
+                                <span class="text-white/40 text-xs uppercase tracking-widest font-bold">24. travnja 2026.</span>
+                            </div>
+                            <div class="flex gap-10">
+                                <div class="text-center">
+                                    <div id="days" class="countdown-digit">00</div>
+                                    <div class="countdown-label">Dana</div>
+                                </div>
+                                <div class="text-center">
+                                    <div id="hours" class="countdown-digit">00</div>
+                                    <div class="countdown-label">Sati</div>
+                                </div>
+                                <div class="text-center">
+                                    <div id="mins" class="countdown-digit">00</div>
+                                    <div class="countdown-label">Min</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Right: CTA Panel -->
+                        <div class="flex flex-col justify-center gap-8 p-10 rounded-3xl" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                            <div>
+                                <p class="text-white/80 text-lg font-light leading-relaxed mb-2">Najveći MMA spektakl godine.</p>
+                                <p class="text-[--text-muted] text-sm font-light leading-relaxed">Borbe za pojas, međunarodni gosti i vrhunska produkcija. Osigurajte svoje mjesto na vrijeme.</p>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <div class="btn-wrap">
+                                    <a href="#" class="btn-premium px-10 py-5 bg-[--cro-red] text-white font-black uppercase tracking-widest text-sm block text-center">Prijavi se</a>
+                                </div>
+                                <button onclick="openEventModal('croatia-open')" class="px-10 py-4 text-white/50 hover:text-white text-xs font-bold uppercase tracking-widest transition-colors text-center">Više detalja &rarr;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-4 reveal" style="transition-delay: 200ms;">
+                <!-- Event 1 -->
+                <div class="glass p-8 rounded-2xl flex flex-wrap items-center justify-between group hover:bg-white/5 transition-all border-l-2 border-l-transparent hover:border-l-[--cro-red]">
+                    <div class="flex items-center gap-8">
+                        <div class="text-center min-w-[60px]">
+                            <span class="block text-3xl font-bold leading-none impact-text">24</span>
+                            <span class="text-[--cro-red] text-[10px] uppercase font-bold tracking-widest">TRAVANJ</span>
+                        </div>
+                        <div>
+                            <h4 class="text-2xl font-bold transition-colors">Croatia Open 2026</h4>
+                            <p class="text-[--text-muted] text-[10px] uppercase font-bold tracking-[0.2em] mt-1">Arena Zagreb, Zagreb</p>
+                        </div>
+                    </div>
+                    <div class="btn-wrap">
+                        <button onclick="openEventModal('croatia-open')" class="btn-premium px-8 py-3 bg-[--text-muted]/5 border border-[--text-muted]/20 text-xs font-bold uppercase tracking-widest transition-all">Detalji &rarr;</button>
+                    </div>
+                </div>
+                <!-- Event 2 -->
+                <div class="glass p-8 rounded-2xl flex flex-wrap items-center justify-between group hover:bg-white/5 transition-all border-l-2 border-l-transparent hover:border-l-[--cro-red]">
+                    <div class="flex items-center gap-8">
+                        <div class="text-center min-w-[60px]">
+                            <span class="block text-3xl font-bold leading-none impact-text">15</span>
+                            <span class="text-[--cro-red] text-[10px] uppercase font-bold tracking-widest">LIPANJ</span>
+                        </div>
+                        <div>
+                            <h4 class="text-2xl font-bold transition-colors">Trofej Jadrana</h4>
+                            <p class="text-[--text-muted] text-[10px] uppercase font-bold tracking-[0.2em] mt-1">Amfiteatar Pula, Pula</p>
+                        </div>
+                    </div>
+                    <div class="btn-wrap">
+                        <button onclick="openEventModal('trofej-jadrana')" class="btn-premium px-8 py-3 bg-[--text-muted]/5 border border-[--text-muted]/20 text-xs font-bold uppercase tracking-widest transition-all">Detalji &rarr;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Gallery -->
+    <section id="galerija" class="py-32 bg-black relative">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                <div>
+                    <h2 class="text-7xl font-bold italic leading-none section-heading">AKCIJA <span class="text-[--cro-red]">2025</span></h2>
+                    <p class="text-[--text-muted] tracking-[0.4em] uppercase text-[10px] font-bold mt-4">Trenuci koji definiraju sport</p>
+                </div>
+                <div class="hidden md:block">
+                    <span class="impact-text text-white/5 text-8xl select-none">GALLERY</span>
+                </div>
+            </div>
+
+            <div class="gallery-grid reveal">
+                <!-- Large Item -->
+                <div class="gallery-item wide tall group" onclick="openLightbox('mma_hero_cage_croatia_1773261233148')">
+                    <img src="mma_hero_cage_croatia_1773261233148.png" alt="MMA Action 1">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                        <span class="text-white text-xs font-bold tracking-widest uppercase italic">The Cage Entrance</span>
+                    </div>
+                </div>
+                <!-- Regular Items -->
+                <div class="gallery-item group" onclick="openLightbox('mma_news_championship_1773261249907')">
+                    <img src="mma_news_championship_1773261249907.png" alt="MMA Action 2">
+                </div>
+                <div class="gallery-item group" onclick="openLightbox('mma_fighter_portrait_1_1773261264744')">
+                    <img src="mma_fighter_portrait_1_1773261264744.png" alt="MMA Action 3">
+                </div>
+                <div class="gallery-item tall group" onclick="openLightbox('mma_fighter_portrait_2_1773261280100')">
+                    <img src="mma_fighter_portrait_2_1773261280100.png" alt="MMA Action 4">
+                </div>
+                <div class="gallery-item group" onclick="openLightbox('mma_fighter_portrait_3_1773261299045')">
+                    <img src="mma_fighter_portrait_3_1773261299045.png" alt="MMA Action 5">
+                </div>
+                <div class="gallery-item wide group" onclick="openLightbox('mma_crowd_cinematic_bg_1773263499538')">
+                    <img src="mma_crowd_cinematic_bg_1773263499538.png" alt="MMA Action 6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pravila & Dokumenti -->
+    <section id="dokumenti" class="py-32 bg-[--bg-dark] relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[--cro-red]/20 to-transparent"></div>
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <p class="text-[--cro-red] text-[10px] uppercase font-bold tracking-[.4em] mb-4">Službeni dokumenti HMMS-a</p>
+                <h2 class="text-6xl md:text-7xl font-bold mb-4 section-heading">Pravila & Dokumenti</h2>
+                <div class="w-32 h-1 bg-[--cro-red] mx-auto"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-16 reveal" style="transition-delay: 100ms;">
+
+                <!-- Category 1: Natjecanja -->
+                <div>
+                    <h3 class="text-xs font-black uppercase tracking-[.3em] text-[--cro-red] mb-8 flex items-center gap-3">
+                        <span class="w-8 h-[1px] bg-[--cro-red] block"></span>Natjecanja
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="doc-card group">
+                            <div class="doc-icon">
+                                <svg class="w-6 h-6 text-[--cro-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-bold text-sm leading-snug mb-1 group-hover:text-[--cro-red] transition-colors">Propozicije Državnog Prvenstva 2026</p>
+                                <p class="text-[--text-muted] text-[10px] uppercase font-bold tracking-widest">PDF · Siječanj 2026</p>
+                            </div>
+                            <a href="#" class="text-[--cro-red] hover:scale-110 transition-transform flex-shrink-0" aria-label="Preuzmi">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                            </a>
+                        </div>
+                        <div class="doc-card group">
+                            <div class="doc-icon">
+                                <svg class="w-6 h-6 text-[--cro-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-bold text-sm leading-snug mb-1 group-hover:text-[--cro-red] transition-colors">Pravilnik o bodovanju MMA borbi</p>
+                                <p class="text-[--text-muted] text-[10px] uppercase font-bold tracking-widest">PDF · Rujan 2025</p>
+                            </div>
+                            <a href="#" class="text-[--cro-red] hover:scale-110 transition-transform flex-shrink-0" aria-label="Preuzmi">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                            </a>
+                        </div>
+                        <div class="doc-card group">
+                            <div class="doc-icon">
+                                <svg class="w-6 h-6 text-[--cro-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-bold text-sm leading-snug mb-1 group-hover:text-[--cro-red] transition-colors">Težinske kategorije IMMAF 2026</p>
+                                <p class="text-[--text-muted] text-[10px] uppercase font-bold tracking-widest">PDF · Siječanj 2026</p>
+                            </div>
+                            <a href="#" class="text-[--cro-red] hover:scale-110 transition-transform flex-shrink-0" aria-label="Preuzmi">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Medicinska pravila -->
+                <div>
+                    <h3 class="text-xs font-black uppercase tracking-[.3em] text-[--cro-red] mb-8 flex items-center gap-3">
+                        <span class="w-8 h-[1px] bg-[--cro-red] block"></span>Medicinska
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="doc-card group">
+                            <div class="doc-icon">
+                                <svg class="w-6 h-6 text-[--cro-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-bold text-sm leading-snug mb-1 group-hover:text-[--cro-red] transition-colors">Medicinski protokol za borce</p>
+                                <p class="text-[--text-muted] text-[10px] uppercase font-bold tracking-widest">PDF · Ožujak 2025</p>
+                            </div>
+                            <a href="#" class="text-[--cro-red] hover:scale-110 transition-transform flex-shrink-0" aria-label="Preuzmi">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                            </a>
+                        </div>
+                        <div class="doc-card group">
+                            <div class="doc-icon">
+                                <svg class="w-6 h-6 text-[--cro-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-bold text-sm leading-snug mb-1 group-hover:text-[--cro-red] transition-colors">Zahtjevi za liječničkim pregledom</p>
+                                <p class="text-[--text-muted] text-[10px] uppercase font-bold tracking-widest">PDF · Ožujak 2025</p>
+                            </div>
+                            <a href="#" class="text-[--cro-red] hover:scale-110 transition-transform flex-shrink-0" aria-label="Preuzmi">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Administrativni -->
+                <div>
+                    <h3 class="text-xs font-black uppercase tracking-[.3em] text-[--cro-red] mb-8 flex items-center gap-3">
+                        <span class="w-8 h-[1px] bg-[--cro-red] block"></span>Administrativni
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="doc-card group">
+                            <div class="doc-icon">
+                                <svg class="w-6 h-6 text-[--cro-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-bold text-sm leading-snug mb-1 group-hover:text-[--cro-red] transition-colors">Pristupnica za klub</p>
+                                <p class="text-[--text-muted] text-[10px] uppercase font-bold tracking-widest">PDF · Prosinac 2024</p>
+                            </div>
+                            <a href="#" class="text-[--cro-red] hover:scale-110 transition-transform flex-shrink-0" aria-label="Preuzmi">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                            </a>
+                        </div>
+                        <div class="doc-card group">
+                            <div class="doc-icon">
+                                <svg class="w-6 h-6 text-[--cro-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-bold text-sm leading-snug mb-1 group-hover:text-[--cro-red] transition-colors">Pristupnica za borca / trenera</p>
+                                <p class="text-[--text-muted] text-[10px] uppercase font-bold tracking-widest">PDF · Prosinac 2024</p>
+                            </div>
+                            <a href="#" class="text-[--cro-red] hover:scale-110 transition-transform flex-shrink-0" aria-label="Preuzmi">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                            </a>
+                        </div>
+                        <div class="doc-card group">
+                            <div class="doc-icon">
+                                <svg class="w-6 h-6 text-[--cro-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-bold text-sm leading-snug mb-1 group-hover:text-[--cro-red] transition-colors">Pravilnik o disciplinskim mjerama</p>
+                                <p class="text-[--text-muted] text-[10px] uppercase font-bold tracking-widest">PDF · Lipanj 2025</p>
+                            </div>
+                            <a href="#" class="text-[--cro-red] hover:scale-110 transition-transform flex-shrink-0" aria-label="Preuzmi">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="kontakt" class="py-32 bg-[--bg-slate] relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[--cro-red]/20 to-transparent"></div>
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <p class="text-[--cro-red] text-[10px] uppercase font-bold tracking-[.4em] mb-4">Stupite u kontakt</p>
+                <h2 class="text-6xl md:text-7xl font-bold mb-4 section-heading">Kontakt</h2>
+                <div class="w-32 h-1 bg-[--cro-red] mx-auto"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-stretch reveal" style="transition-delay: 100ms;">
+
+                <!-- LEFT: Info Panel -->
+                <div class="relative rounded-3xl overflow-hidden flex flex-col" style="background: #0a0a0a; border: 1px solid rgba(255,255,255,0.06);">
+                    <!-- Red gradient top bar -->
+                    <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[--cro-red] to-transparent"></div>
+                    <!-- Ambient glow -->
+                    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-48 bg-[--cro-red] opacity-10 blur-3xl pointer-events-none"></div>
+                    <!-- Geometric grid pattern background -->
+                    <div class="absolute inset-0 pointer-events-none select-none" aria-hidden="true" style="background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+                    <div class="relative z-10 flex flex-col justify-between h-full p-12 gap-12">
+
+                        <!-- Header -->
+                        <div>
+                            <p class="text-[--cro-red] text-[10px] uppercase font-black tracking-[.4em] mb-5">Hrvatski MMA Savez</p>
+                            <h3 class="font-black italic leading-[0.9] text-white" style="font-size: clamp(3.5rem, 6vw, 5.5rem);">Uvijek<br>dostupni.</h3>
+                        </div>
+
+                        <!-- Info rows -->
+                        <div class="space-y-7">
+                            <!-- Adresa -->
+                            <div class="group flex gap-5 items-center border-b border-white/5 pb-7">
+                                <div class="w-12 h-12 min-w-[3rem] rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[--cro-red] group-hover:border-[--cro-red] transition-all duration-300">
+                                    <svg class="w-5 h-5 text-[--cro-red] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-[9px] font-black uppercase tracking-[.35em] text-[--cro-red] mb-1">Adresa</p>
+                                    <p class="text-white font-bold text-lg leading-snug">Ilica 1, 10000 Zagreb</p>
+                                    <p class="text-white/40 text-sm font-light">Republika Hrvatska</p>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="group flex gap-5 items-center border-b border-white/5 pb-7">
+                                <div class="w-12 h-12 min-w-[3rem] rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[--cro-red] group-hover:border-[--cro-red] transition-all duration-300">
+                                    <svg class="w-5 h-5 text-[--cro-red] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-[9px] font-black uppercase tracking-[.35em] text-[--cro-red] mb-1">Email</p>
+                                    <a href="mailto:info@cromma.hr" class="block text-white font-bold text-lg hover:text-[--cro-red] transition-colors">info@cromma.hr</a>
+                                    <a href="mailto:natjecanja@cromma.hr" class="block text-white/40 text-sm font-light mt-0.5 hover:text-[--cro-red] transition-colors">natjecanja@cromma.hr</a>
+                                </div>
+                            </div>
+
+                            <!-- Telefon -->
+                            <div class="group flex gap-5 items-center border-b border-white/5 pb-7">
+                                <div class="w-12 h-12 min-w-[3rem] rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[--cro-red] group-hover:border-[--cro-red] transition-all duration-300">
+                                    <svg class="w-5 h-5 text-[--cro-red] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-[9px] font-black uppercase tracking-[.35em] text-[--cro-red] mb-1">Telefon</p>
+                                    <a href="tel:+38512345678" class="block text-white font-bold text-lg hover:text-[--cro-red] transition-colors">+385 1 234 5678</a>
+                                </div>
+                            </div>
+
+                            <!-- Radno Vrijeme -->
+                            <div class="group flex gap-5 items-start">
+                                <div class="w-12 h-12 min-w-[3rem] rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[--cro-red] group-hover:border-[--cro-red] transition-all duration-300">
+                                    <svg class="w-5 h-5 text-[--cro-red] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-[9px] font-black uppercase tracking-[.35em] text-[--cro-red] mb-3">Radno Vrijeme</p>
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between">
+                                            <span class="text-white/40 font-light text-base">Pon – Pet</span>
+                                            <span class="text-white font-bold text-base">09:00 – 17:00</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-white/40 font-light text-base">Subota</span>
+                                            <span class="text-white font-bold text-base">10:00 – 14:00</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-white/40 font-light text-base">Nedjelja</span>
+                                            <span class="text-[--cro-red] font-bold text-base">Zatvoreno</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social -->
+                        <div class="pt-6 border-t border-white/5">
+                            <p class="text-[9px] font-black uppercase tracking-[.35em] text-white/30 mb-4">Pratite nas</p>
+                            <div class="flex gap-3">
+                                <a href="#" class="flex-1 flex items-center justify-center gap-2 py-3 bg-white/5 border border-white/10 rounded-xl text-xs font-bold tracking-widest text-white/50 uppercase hover:bg-[--cro-red] hover:border-[--cro-red] hover:text-white transition-all duration-300" aria-label="Instagram">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                    IG
+                                </a>
+                                <a href="#" class="flex-1 flex items-center justify-center gap-2 py-3 bg-white/5 border border-white/10 rounded-xl text-xs font-bold tracking-widest text-white/50 uppercase hover:bg-[--cro-red] hover:border-[--cro-red] hover:text-white transition-all duration-300" aria-label="Facebook">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                                    FB
+                                </a>
+                                <a href="#" class="flex-1 flex items-center justify-center gap-2 py-3 bg-white/5 border border-white/10 rounded-xl text-xs font-bold tracking-widest text-white/50 uppercase hover:bg-[--cro-red] hover:border-[--cro-red] hover:text-white transition-all duration-300" aria-label="X / Twitter">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                    X
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- RIGHT: Contact Form -->
+                <div class="kontakt-card flex flex-col">
+                    <h3 class="text-2xl font-bold italic mb-2">Pošaljite poruku</h3>
+                    <p class="text-[--text-muted] text-sm font-light mb-8">Za sve upite vezane uz natjecanja, licenciranje ili članstvo — tu smo.</p>
+
+                    <form id="contactForm" class="flex flex-col gap-5 flex-1">
+                        <div class="grid md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold tracking-widest mb-2 opacity-50">Ime i Prezime</label>
+                                <input type="text" id="ctxName" class="premium-input" placeholder="Vaše ime" required>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold tracking-widest mb-2 opacity-50">Email</label>
+                                <input type="email" id="ctxEmail" class="premium-input" placeholder="vas@email.com" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold tracking-widest mb-2 opacity-50">Tema</label>
+                            <select id="ctxSubject" class="premium-input appearance-none" required>
+                                <option value="">— Odaberi temu —</option>
+                                <option value="clanstvo">Članstvo</option>
+                                <option value="natjecanja">Natjecanja</option>
+                                <option value="mediji">Mediji & Press</option>
+                                <option value="sponzorstvo">Sponzorstvo</option>
+                                <option value="ostalo">Ostalo</option>
+                            </select>
+                        </div>
+                        <div class="flex-1">
+                            <label class="block text-[10px] uppercase font-bold tracking-widest mb-2 opacity-50">Poruka</label>
+                            <textarea id="ctxMessage" class="premium-input resize-none" style="min-height: 140px;" placeholder="Vaša poruka..." required></textarea>
+                        </div>
+                        <div id="ctxError" class="hidden text-[--cro-red] text-xs font-bold uppercase tracking-widest"></div>
+                        <div id="ctxSuccess" class="hidden text-green-400 text-xs font-bold uppercase tracking-widest text-center py-2">Poruka uspješno poslana! Javit ćemo se uskoro.</div>
+                        <button type="button" id="ctxSubmit" class="btn-premium w-full py-5 bg-[--cro-red] text-white font-black uppercase tracking-widest text-sm hover:translate-y-[-2px] transition-all mt-auto">
+                            Pošalji poruku &rarr;
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTop" aria-label="Povratak na vrh">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="py-24 bg-black border-t border-white/5 relative overflow-hidden">
+        <!-- Neon Glow Background -->
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[1px] bg-gradient-to-r from-transparent via-[--cro-red] to-transparent shadow-[0_0_50px_var(--cro-red)]"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-4 gap-16 border-b border-white/10 pb-20">
+                <div class="col-span-2">
+                    <div class="flex flex-col leading-none italic font-black mb-10">
+                        <span class="masked-text text-[60px] md:text-[80px] tracking-[-0.04em] block">HRVATSKI</span>
+                        <span class="masked-text text-[32px] md:text-[42px] tracking-[0.38em] block mt-1 md:mt-2">MMA SAVEZ</span>
+                    </div>
+                    <p class="text-[--text-muted] font-light max-w-sm leading-relaxed text-lg">
+                        Hrvatski MMA Savez je vodeća organizacija za razvoj, regulaciju i globalnu promociju MMA sporta u Republici Hrvatskoj. Unificiramo snagu i disciplinu u jedan nacionalni identitet.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="font-bold uppercase tracking-[0.3em] text-[10px] text-[--cro-red] mb-10">Navigacija</h5>
+                    <ul class="space-y-6 text-[--text-muted] text-sm font-semibold tracking-widest uppercase">
+                        <li><a href="#savez" class="hover:text-white transition-colors duration-300">O Savezu</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Postani Član</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Sudački Odjel</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Arhiva</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold uppercase tracking-[0.3em] text-[10px] text-[--cro-red] mb-10">Newsletter</h5>
+                    <div class="space-y-6">
+                        <div class="relative group">
+                            <input type="email" placeholder="PRIDRUŽI SE" class="w-full bg-white/5 border border-white/10 px-6 py-4 text-xs font-bold tracking-widest focus:outline-none focus:border-[--cro-red] transition-all uppercase">
+                            <button class="absolute right-2 top-2 bottom-2 px-6 bg-[--cro-red] text-white text-[10px] font-black uppercase tracking-widest hover:bg-red-700 transition-all shadow-[0_5px_15px_rgba(200,16,46,0.3)]">Odi</button>
+                        </div>
+                        <p class="text-[--text-muted] text-[9px] uppercase tracking-[0.2em] leading-relaxed">Prijavom na newsletter prihvaćate naše uvjete o privatnosti.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-12 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] text-gray-600 font-bold uppercase tracking-[.4em]">
+                <span class="text-center md:text-left">&copy; 2026 HRVATSKI MMA SAVEZ. INTEGRITY & POWER.</span>
+                <div class="flex gap-10">
+                    <a href="#" class="hover:text-[--cro-red] transition-all duration-300">Instagram</a>
+                    <a href="#" class="hover:text-[--cro-red] transition-all duration-300">Facebook</a>
+                    <a href="#" class="hover:text-[--cro-red] transition-all duration-300">X / Twitter</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="regModal" class="modal-overlay" onclick="closeModal('regModal', event)">
+        <div class="modal-content p-12 bg-[--bg-slate] border border-white/10" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-12">
+                <div>
+                    <h3 class="text-4xl font-bold italic mb-2">POSTANI DIO SAVEZA</h3>
+                    <p class="text-[--cro-red] text-[10px] font-bold uppercase tracking-widest">Registracija za klubove i pojedince</p>
+                </div>
+                <button onclick="closeModal('regModal')" class="text-white/50 hover:text-white transition-colors">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <form id="regForm" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold tracking-widest mb-3 opacity-50">Ime i Prezime</label>
+                        <input type="text" id="regName" class="premium-input" placeholder="UNESI IME" required>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold tracking-widest mb-3 opacity-50">Email Adresa</label>
+                        <input type="email" id="regEmail" class="premium-input" placeholder="MMA@CROMMA.HR" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase font-bold tracking-widest mb-3 opacity-50">Tip Članstva</label>
+                    <select id="regType" class="premium-input appearance-none" required>
+                        <option value="">— ODABERI TIP —</option>
+                        <option value="amater">AMATERSKI BORAC</option>
+                        <option value="pro">PROFESIONALNI BORAC</option>
+                        <option value="klub">TRENER / KLUB</option>
+                    </select>
+                </div>
+                <div id="regError" class="hidden text-[--cro-red] text-xs font-bold uppercase tracking-widest py-2"></div>
+                <div id="regSuccess" class="hidden text-green-400 text-xs font-bold uppercase tracking-widest py-2 text-center">Zahtjev uspješno poslan! Kontaktirat ćemo vas uskoro.</div>
+                <button type="button" id="regSubmit" class="btn-premium w-full py-6 bg-[--cro-red] text-white font-black uppercase tracking-widest text-sm hover:translate-y-[-2px] transition-all">
+                    POŠALJI ZAHTJEV
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- News Modal -->
+    <div id="newsModal" class="modal-overlay" onclick="closeModal('newsModal', event)">
+        <div class="modal-content p-12 bg-[--bg-slate] border border-white/10" onclick="event.stopPropagation()">
+            <button onclick="closeModal('newsModal')" class="absolute top-10 right-10 text-white/50 hover:text-white transition-colors">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div id="modalNewsContent">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Club Modal -->
+    <div id="clubModal" class="modal-overlay" onclick="closeModal('clubModal', event)">
+        <div class="modal-content p-12 bg-[--bg-slate] border border-white/10" onclick="event.stopPropagation()">
+            <button onclick="closeModal('clubModal')" class="absolute top-10 right-10 text-white/50 hover:text-white transition-colors">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div id="modalClubContent"></div>
+        </div>
+    </div>
+
+    <!-- Event Detail Modal -->
+    <div id="eventModal" class="modal-overlay" onclick="closeModal('eventModal', event)">
+        <div class="modal-content p-12 bg-[--bg-slate] border border-white/10" onclick="event.stopPropagation()">
+            <button onclick="closeModal('eventModal')" class="absolute top-10 right-10 text-white/50 hover:text-white transition-colors" aria-label="Zatvori">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div id="modalEventContent"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+        <img id="lightboxImg" src="" class="lightbox-img" onclick="event.stopPropagation()">
+        <button onclick="closeLightbox()" class="absolute top-10 right-10 text-white/50 hover:text-white transition-colors">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+    </div>
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const menuClose = document.getElementById('menuClose');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+
+        const closeMenu = () => {
+            mobileMenu.classList.add('translate-x-full');
+        };
+
+        menuClose.addEventListener('click', closeMenu);
+        navLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // Fix image paths for local serving if they fail (relative fallback)
+        window.addEventListener('load', () => {
+            document.querySelectorAll('img').forEach(img => {
+                const src = img.getAttribute('src');
+                if (src && src.startsWith('C:/')) {
+                    const fileName = src.split('/').pop();
+                    img.src = fileName;
+                }
+            });
+        });
+
+        // Position ticker exactly below navbar
+        function positionTicker() {
+            const navbar = document.getElementById('navbar');
+            const ticker = document.querySelector('.news-ticker');
+            if (!navbar || !ticker) return;
+            const h = navbar.getBoundingClientRect().height;
+            if (h > 0) ticker.style.top = Math.ceil(h) + 'px';
+        }
+        // Fire at every timing point to catch fonts/layout settling
+        requestAnimationFrame(positionTicker);
+        [50, 150, 400, 800].forEach(d => setTimeout(positionTicker, d));
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(positionTicker);
+        window.addEventListener('resize', positionTicker);
+        document.getElementById('navbar').addEventListener('transitionend', positionTicker);
+
+        // Theme Switch Logic
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+            document.body.classList.toggle('light-mode');
+            
+            // Kinetic Impact Flash
+            const flash = document.createElement('div');
+            flash.style.position = 'fixed';
+            flash.style.inset = '0';
+            flash.style.background = 'white';
+            flash.style.opacity = '0.2';
+            flash.style.zIndex = '9999';
+            flash.style.pointerEvents = 'none';
+            flash.style.transition = 'opacity 0.4s ease';
+            document.body.appendChild(flash);
+            
+            setTimeout(() => {
+                flash.style.opacity = '0';
+                setTimeout(() => flash.remove(), 400);
+            }, 50);
+
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            const ticker = document.querySelector('.news-ticker');
+            
+            if (window.scrollY > 20) {
+                nav.classList.add('glass', 'py-3');
+                nav.classList.remove('py-4');
+                if (ticker) ticker.classList.add('hidden-ticker');
+            } else {
+                nav.classList.remove('glass', 'py-3');
+                nav.classList.add('py-4');
+                if (ticker) {
+                    ticker.classList.remove('hidden-ticker');
+                    // Re-position after navbar transition finishes (0.4s)
+                    setTimeout(positionTicker, 420);
+                }
+            }
+
+            // Glow Orbs Movement
+            const scrolled = window.scrollY;
+            const orbRed = document.getElementById('orbRed');
+            const orbBlue = document.getElementById('orbBlue');
+            
+            orbRed.style.transform = `translate(${scrolled * 0.1}px, ${scrolled * 0.05}px)`;
+            orbBlue.style.transform = `translate(-${scrolled * 0.1}px, -${scrolled * 0.05}px)`;
+
+            // Rights and Lefts Parallax
+            const paraLeft = document.getElementById('paraLeft');
+            const paraRight = document.getElementById('paraRight');
+            const heroImage = document.getElementById('heroImage');
+            
+            // Adjust values based on scroll
+            const speed = 0.8;
+            const heroOffset = document.getElementById('pocetna').offsetTop;
+            const scrollRelative = scrolled - heroOffset;
+            
+            paraLeft.style.transform = `translateX(${-500 + scrollRelative * speed}px)`;
+            paraRight.style.transform = `translateX(${500 - scrollRelative * speed}px)`;
+            
+            if (scrolled > heroOffset - window.innerHeight && scrolled < heroOffset + window.innerHeight) {
+                heroImage.style.transform = `scale(1.1) translateY(${(scrolled - heroOffset) * 0.2}px)`;
+            }
+        });
+
+        // Intersection Observer for Reveals
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // 3D Tilt Interaction
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            const inner = card.querySelector('.tilt-inner');
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (centerY - y) / 40;
+                const rotateY = (x - centerX) / 40;
+                inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                inner.style.transform = `rotateX(0) rotateY(0) scale(1)`;
+            });
+        });
+
+        // Scrub Progress Animation
+        const scrubMission = document.getElementById('scrubMission');
+        window.addEventListener('scroll', () => {
+            if (scrubMission) {
+                const rect = scrubMission.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    const progress = Math.min(100, Math.max(0, (windowHeight - rect.top) / (windowHeight / 1.5) * 100));
+                    scrubMission.style.setProperty('--progress', `${progress}%`);
+                }
+            }
+        });
+
+        // ── Article & Club content store ──────────────────────────────────────
+        const newsArticles = {
+            'drzavno-prvenstvo': {
+                category: 'Državno Prvenstvo',
+                date: '10. ožujka 2026.',
+                title: 'Najavljeno amatersko državno prvenstvo u Zagrebu',
+                image: 'mma_news_championship_1773261249907.png',
+                body: `
+                    <p class="mb-5">Hrvatski MMA Savez s ponosom najavljuje održavanje <strong>Amaterskog državnog prvenstva u MMA-u</strong>, koje će se održati u Domu Sportova u Zagrebu. Ovo je najveći amaterski MMA događaj u povijesti hrvatskog sporta — i svake godine raste.</p>
+                    <p class="mb-5">Natjecanje je otvoreno za sve registrirane borce koji nastupaju za klubove članove HMMS-a. Kategorije uključuju sve dobne skupine od juniora do seniora, u svim težinskim kategorijama sukladno IMMAF pravilniku.</p>
+                    <h4 class="text-white font-black uppercase tracking-widest text-xs mb-3 mt-8">Ključni datumi</h4>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-start gap-3"><span class="text-[#C8102E] font-black mt-0.5">◆</span> <span><strong class="text-white">15. ožujka</strong> — Rok za prijavu klubova i boraca</span></li>
+                        <li class="flex items-start gap-3"><span class="text-[#C8102E] font-black mt-0.5">◆</span> <span><strong class="text-white">20. ožujka</strong> — Objava satnice i rasporeda borbi</span></li>
+                        <li class="flex items-start gap-3"><span class="text-[#C8102E] font-black mt-0.5">◆</span> <span><strong class="text-white">24. travnja</strong> — Dan natjecanja, Dom Sportova Zagreb</span></li>
+                    </ul>
+                    <p class="mb-5">Organizacija je povjerena stručnom timu HMMS-a uz podršku međunarodnih sudaca certificiranih od strane IMMAF-a. Sigurnost boraca je na prvom mjestu — sva pravila strogo se primjenjuju.</p>
+                    <p class="text-white/40 text-sm">Za prijavu i dodatne informacije kontaktirajte vaš matični klub ili posjetite službeni portal HMMS-a.</p>
+                `
+            }
+        };
+
+        const clubProfiles = {
+            'crows': {
+                name: 'UFK Crows',
+                city: 'Zagreb',
+                logo: 'logo_crows_1773326271491.png',
+                founded: '2011.',
+                members: '120+',
+                disciplines: 'MMA · Grappling · BJJ · Boks',
+                body: `
+                    <p class="mb-5">UFK Crows jedan je od najozbiljnijih i najdugovječnijih MMA klubova u Hrvatskoj. Osnovan 2011. godine u Zagrebu, klub se od samih početaka profilirao kao centar izvrsnosti u grapplingu i modernom pristupu mješovitim borilačkim vještinama.</p>
+                    <p class="mb-5">Kroz godine, Crows su iznjedrili brojne državne prvake i reprezentativce koji su Hrvatsku predstavljali na europskim i svjetskim IMMAF natjecanjima. Trenerski kadar broji iskusne stručnjake s međunarodnim licencama.</p>
+                    <h4 class="text-white font-black uppercase tracking-widest text-xs mb-3 mt-8">Što nude</h4>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-start gap-3"><span class="text-[#C8102E] font-black mt-0.5">◆</span> Treninzi za početnike, amatere i profesionalce</li>
+                        <li class="flex items-start gap-3"><span class="text-[#C8102E] font-black mt-0.5">◆</span> Specijalizirani grappling i BJJ programi</li>
+                        <li class="flex items-start gap-3"><span class="text-[#C8102E] font-black mt-0.5">◆</span> Priprema boraca za amaterska i profesionalna natjecanja</li>
+                        <li class="flex items-start gap-3"><span class="text-[#C8102E] font-black mt-0.5">◆</span> Rekreativni programi za sve uzraste</li>
+                    </ul>
+                    <p class="text-white/40 text-sm">Klub je punopravni član Hrvatskog MMA Saveza i aktivno sudjeluje u svim službenim natjecanjima.</p>
+                `
+            }
+        };
+
+        // Modal Management
+        window.openModal = function(id, contentData = null) {
+            const modal = document.getElementById(id);
+
+            if (id === 'newsModal') {
+                const contentArea = document.getElementById('modalNewsContent');
+                const article = contentData && contentData.articleId
+                    ? newsArticles[contentData.articleId]
+                    : (contentData || {});
+                const title    = (article && article.title)    || (contentData && contentData.title)    || 'Vijesti';
+                const category = (article && article.category) || (contentData && contentData.category) || 'INFO';
+                const date     = (article && article.date)     || '';
+                const img      = (article && article.image)    || '';
+                const body     = (article && article.body)     || '<p>Detaljan sadržaj vijesti će biti dostupan uskoro.</p>';
+
+                // Build entirely with DOM API — no string parsing issues
+                contentArea.innerHTML = '';
+
+                // Category + date row
+                const meta = document.createElement('div');
+                meta.style.cssText = 'display:flex;align-items:center;gap:10px;margin-bottom:18px;';
+                const catSpan = document.createElement('span');
+                catSpan.style.cssText = 'color:#C8102E;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.4em;';
+                catSpan.textContent = category;
+                meta.appendChild(catSpan);
+                if (date) {
+                    const dot = document.createElement('span');
+                    dot.style.cssText = 'color:rgba(255,255,255,0.3);font-size:10px;';
+                    dot.textContent = ' · ';
+                    const dateSpan = document.createElement('span');
+                    dateSpan.style.cssText = 'color:rgba(255,255,255,0.4);font-size:10px;';
+                    dateSpan.textContent = date;
+                    meta.appendChild(dot);
+                    meta.appendChild(dateSpan);
+                }
+                contentArea.appendChild(meta);
+
+                // Title
+                const h2 = document.createElement('h2');
+                h2.style.cssText = 'font-size:clamp(1.8rem,4vw,3rem);font-weight:900;font-style:italic;margin-bottom:24px;line-height:1.1;';
+                h2.textContent = title;
+                contentArea.appendChild(h2);
+
+                // Image — injected directly as DOM element, no innerHTML parsing
+                if (img) {
+                    const imgWrap = document.createElement('div');
+                    imgWrap.style.cssText = 'width:100%;height:280px;border-radius:16px;overflow:hidden;margin-bottom:28px;';
+                    const imgEl = document.createElement('img');
+                    imgEl.src = img;
+                    imgEl.style.cssText = 'width:100%;height:100%;object-fit:cover;opacity:0.88;display:block;';
+                    imgEl.onerror = function() { imgWrap.style.display = 'none'; };
+                    imgWrap.appendChild(imgEl);
+                    contentArea.appendChild(imgWrap);
+                }
+
+                // Body HTML
+                const bodyDiv = document.createElement('div');
+                bodyDiv.style.cssText = 'color:rgba(255,255,255,0.65);font-weight:300;line-height:1.8;font-size:15px;';
+                bodyDiv.innerHTML = body;
+                contentArea.appendChild(bodyDiv);
+            }
+
+            if (id === 'clubModal') {
+                const club = clubProfiles[contentData && contentData.clubId] || {};
+                const contentArea = document.getElementById('modalClubContent');
+                contentArea.innerHTML = `
+                    <div class="flex items-center gap-6 mb-8">
+                        ${club.logo ? `<div class="w-20 h-20 rounded-xl overflow-hidden border border-white/10 flex-shrink-0"><img src="${club.logo}" class="w-full h-full object-cover"></div>` : ''}
+                        <div>
+                            <p class="text-[#C8102E] text-[10px] uppercase font-black tracking-[.4em] mb-1">${club.city || ''}</p>
+                            <h2 class="text-3xl md:text-4xl font-black italic">${club.name || ''}</h2>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mb-8 p-5 rounded-xl" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);">
+                        <div class="text-center"><p class="text-white font-black text-xl">${club.founded || '—'}</p><p class="text-white/40 text-[9px] uppercase tracking-widest mt-1">Osnovan</p></div>
+                        <div class="text-center border-x border-white/10"><p class="text-white font-black text-xl">${club.members || '—'}</p><p class="text-white/40 text-[9px] uppercase tracking-widest mt-1">Članova</p></div>
+                        <div class="text-center"><p class="text-white font-black text-sm leading-tight">${club.disciplines || '—'}</p><p class="text-white/40 text-[9px] uppercase tracking-widest mt-1">Discipline</p></div>
+                    </div>
+                    <div class="text-white/60 font-light leading-relaxed text-[15px]">${club.body || ''}</div>
+                    <div class="mt-8">
+                        <a href="#kontakt" onclick="closeModal('clubModal')" class="inline-flex items-center gap-3 bg-[#C8102E] text-white font-black uppercase tracking-widest text-[11px] px-8 py-4 transition-all hover:bg-white hover:text-black" style="clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%);">Kontaktiraj klub →</a>
+                    </div>
+                `;
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeModal = function(id, event = null) {
+            if (event && event.target !== document.getElementById(id)) return;
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        // Club Search Filtering
+        const clubSearch = document.getElementById('clubSearch');
+        if (clubSearch) {
+            clubSearch.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                document.querySelectorAll('.club-card').forEach(card => {
+                    const name = card.querySelector('h3').textContent.toLowerCase();
+                    const city = card.querySelector('p').textContent.toLowerCase();
+                    if (name.includes(term) || city.includes(term)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // News Card Click Attachment — skip cards that already have onclick (they manage their own modal)
+        document.querySelectorAll('.bento-card').forEach(card => {
+            if (card.getAttribute('onclick')) return;
+            card.addEventListener('click', () => {
+                const title = card.querySelector('h3') ? card.querySelector('h3').textContent : 'Vijesti';
+                const category = card.querySelector('span') ? card.querySelector('span').textContent : 'INFO';
+                window.openModal('newsModal', { title, category });
+            });
+            card.style.cursor = 'pointer';
+        });
+
+        // Lightbox Logic
+        window.openLightbox = function(imgName) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            lightboxImg.src = imgName + '.png';
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeLightbox = function() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        // Ticker Pause on Hover
+        const ticker = document.querySelector('.ticker-track');
+        if (ticker) {
+            ticker.addEventListener('mouseenter', () => ticker.style.animationPlayState = 'paused');
+            ticker.addEventListener('mouseleave', () => ticker.style.animationPlayState = 'running');
+        }
+
+        // Event Countdown Logic
+        function updateCountdown() {
+            const targetDate = new Date('April 24, 2026 00:00:00').getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minsEl = document.getElementById('mins');
+
+            if (daysEl) daysEl.innerText = d.toString().padStart(2, '0');
+            if (hoursEl) hoursEl.innerText = h.toString().padStart(2, '0');
+            if (minsEl) minsEl.innerText = m.toString().padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Active Nav Highlighting
+        const navSectionLinks = document.querySelectorAll('[data-section]');
+        const sections = document.querySelectorAll('section[id]');
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navSectionLinks.forEach(link => {
+                        link.classList.toggle('nav-active', link.dataset.section === entry.target.id);
+                    });
+                }
+            });
+        }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
+        sections.forEach(s => navObserver.observe(s));
+
+        // Scroll-to-top Button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+        }, { passive: true });
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // Keyboard: Escape closes any open modal/lightbox
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Escape') return;
+            ['regModal', 'newsModal', 'eventModal'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.classList.contains('active')) closeModal(id);
+            });
+            closeLightbox();
+        });
+
+        // Focus trap for modals
+        function trapFocus(modalEl) {
+            const focusable = modalEl.querySelectorAll('a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (!focusable.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            modalEl.addEventListener('keydown', function handler(e) {
+                if (e.key !== 'Tab') return;
+                if (e.shiftKey ? document.activeElement === first : document.activeElement === last) {
+                    e.preventDefault();
+                    (e.shiftKey ? last : first).focus();
+                }
+                if (!modalEl.classList.contains('active')) modalEl.removeEventListener('keydown', handler);
+            });
+            first.focus();
+        }
+        const origOpenModal = window.openModal;
+        window.openModal = function(id, contentData = null) {
+            origOpenModal(id, contentData);
+            const el = document.getElementById(id);
+            if (el) setTimeout(() => trapFocus(el), 50);
+        };
+
+        // Animated Counters
+        function animateCounter(el, target, suffix = '') {
+            const duration = 1800;
+            const start = performance.now();
+            function step(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.floor(eased * target) + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const val = parseInt(el.dataset.counter, 10);
+                const suf = el.dataset.suffix || '';
+                animateCounter(el, val, suf);
+                counterObserver.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('[data-counter]').forEach(el => counterObserver.observe(el));
+
+        // Event Detail Modal Data & Logic
+        const eventData = {
+            'croatia-open': {
+                title: 'Croatia Open 2026',
+                date: '24. travnja 2026.',
+                venue: 'Arena Zagreb, Zagreb',
+                category: 'Međunarodno natjecanje',
+                desc: 'Najveći MMA spektakl u regiji. Borbe za pojas u svim kategorijama, međunarodni gosti i vrhunska produkcija. Ulaznice u prodaji na svim prodajnim mjestima.'
+            },
+            'trofej-jadrana': {
+                title: 'Trofej Jadrana',
+                date: '15. lipnja 2026.',
+                venue: 'Amfiteatar Pula, Pula',
+                category: 'Regionalno natjecanje',
+                desc: 'Prestižni turnir na jedinstvenoj lokaciji — u rimskom amfiteatru u Puli. Amaterske i profesionalne kategorije. Prijave otvorene za sve klubove.'
+            }
+        };
+        window.openEventModal = function(eventKey) {
+            const ev = eventData[eventKey];
+            if (!ev) return;
+            const contentArea = document.getElementById('modalEventContent');
+            contentArea.innerHTML = `
+                <p class="text-[--cro-red] text-[10px] uppercase font-bold tracking-[.4em] mb-4">${ev.category}</p>
+                <h2 class="text-4xl font-bold italic mb-2">${ev.title}</h2>
+                <div class="flex flex-wrap gap-6 mb-8 mt-4">
+                    <div class="flex items-center gap-2 text-sm text-[--text-muted]">
+                        <svg class="w-4 h-4 text-[--cro-red] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        <span class="font-semibold text-[--text-main]">${ev.date}</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-[--text-muted]">
+                        <svg class="w-4 h-4 text-[--cro-red] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+                        <span class="font-semibold text-[--text-main]">${ev.venue}</span>
+                    </div>
+                </div>
+                <p class="text-[--text-muted] font-light leading-relaxed">${ev.desc}</p>
+            `;
+            openModal('eventModal');
+        };
+
+        // Contact Form Validation
+        const ctxSubmit = document.getElementById('ctxSubmit');
+        if (ctxSubmit) {
+            ctxSubmit.addEventListener('click', () => {
+                const name = document.getElementById('ctxName').value.trim();
+                const email = document.getElementById('ctxEmail').value.trim();
+                const subject = document.getElementById('ctxSubject').value;
+                const message = document.getElementById('ctxMessage').value.trim();
+                const errEl = document.getElementById('ctxError');
+                const sucEl = document.getElementById('ctxSuccess');
+
+                errEl.classList.add('hidden');
+                sucEl.classList.add('hidden');
+
+                if (!name) { errEl.textContent = 'Unesite ime i prezime.'; errEl.classList.remove('hidden'); return; }
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Unesite valjanu email adresu.'; errEl.classList.remove('hidden'); return; }
+                if (!subject) { errEl.textContent = 'Odaberite temu poruke.'; errEl.classList.remove('hidden'); return; }
+                if (message.length < 10) { errEl.textContent = 'Poruka mora imati najmanje 10 znakova.'; errEl.classList.remove('hidden'); return; }
+
+                sucEl.classList.remove('hidden');
+                ctxSubmit.disabled = true;
+                ctxSubmit.textContent = 'PORUKA POSLANA';
+                ctxSubmit.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+        }
+
+        // Registration Form Validation
+        const regSubmit = document.getElementById('regSubmit');
+        if (regSubmit) {
+            regSubmit.addEventListener('click', () => {
+                const name = document.getElementById('regName').value.trim();
+                const email = document.getElementById('regEmail').value.trim();
+                const type = document.getElementById('regType').value;
+                const errEl = document.getElementById('regError');
+                const sucEl = document.getElementById('regSuccess');
+
+                errEl.classList.add('hidden');
+                sucEl.classList.add('hidden');
+
+                if (!name) { errEl.textContent = 'Unesite ime i prezime.'; errEl.classList.remove('hidden'); return; }
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Unesite valjanu email adresu.'; errEl.classList.remove('hidden'); return; }
+                if (!type) { errEl.textContent = 'Odaberite tip članstva.'; errEl.classList.remove('hidden'); return; }
+
+                sucEl.classList.remove('hidden');
+                regSubmit.disabled = true;
+                regSubmit.textContent = 'ZAHTJEV POSLAN';
+                regSubmit.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+        }
+    </script>
+</body>
+</html>
